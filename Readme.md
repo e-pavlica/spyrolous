@@ -16,5 +16,7 @@ Built in Javascript + Ruby 2.0 with:
 ----
 
 Created in Los Angeles by Evan Pavlica
+
 **General Assembly - Los Angeles** [@ga_la](http://twitter.com/@ga_la)
+
 *Web Development Immersive, September 2013*
