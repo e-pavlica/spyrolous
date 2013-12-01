@@ -7,14 +7,16 @@ A webapp that uses the 3rd(+) screen as a canvas... multiple users can collabora
 
 Built in Javascript + Ruby 2.0 with:
 
-*Sinatra
-*HAML
-*Passenger (production server)
-*(More TBD)
+* Sinatra
+* HAML
+* Passenger (production server)
+* (More TBD)
 
 
 ----
 
 Created in Los Angeles by Evan Pavlica
+
 **General Assembly - Los Angeles** [@ga_la](http://twitter.com/@ga_la)
+
 *Web Development Immersive, September 2013*
