@@ -1,0 +1,95 @@
+var svgData = ""
+
+//for google apis client library
+onLoadCallback = function() {
+  window.setTimeout(startGameForReal, 1);
+}
+
+var s;
+
+$(document).ready(function(){
+  $("#newGame").bind('click', newGame);
+  $("#loadTest").bind('click', retreiveGame);
+
+  // makes a new Snap object
+  s = Snap("#snap");
+  s.attr({
+    fill: "none",
+    stroke: "#000"
+  })
+  // s.path("M 20 40 C 25 55, 95 55, 100 40 S 90 30, 60 30 S 50 45, 35 80 ");
+
+  // draws a circle wherever you click on the svg element
+  // $("#spyro").click(function(e){
+  //   var posX = $(this).offset().left;
+  //   var posY = $(this).offset().top;
+  //   var x = e.pageX - posX;
+  //   var y = e.pageY - posY;
+  //   // console.log(e);
+  //   s.circle(x,y,50);
+  // })
+  $("#spyro").click(function(e){
+    var posX = $(this).offset().left;
+    var posY = $(this).offset().top;
+    var x = e.pageX - posX;
+    var y = e.pageY - posY;
+    var game = {data: x + "," + y +",50"};
+    $.ajax({
+      beforeSend: function(xhrObj){
+        xhrObj.setRequestHeader("Accept","application/json");
+      },
+      type: "PATCH",
+      url:"/games/"+$("#game_id").val()+".json",
+      data: game,
+      success: renderJSON
+    })
+  })
+})
+
+$("#game_data").on('change', function(){
+  s.circle(svgData);
+})
+
+function renderJSON(response){
+  console.log(response);
+  svgData = response.data;
+  $("#game_id").val(response.id);
+  $("#game_data").val(response.data);
+}
+
+function retreiveGame(){
+  var id = $("#test_id").val();
+  $.get("/games/"+id+".json", renderJSON);
+}
+
+function newGame(){
+  $.ajax({ 
+    url:"/games", 
+    type:"POST",
+    data: "",
+    success: renderJSON
+  });
+}
+
+// Lorin's sample code (draws a spiro on an HTML5 canvas)
+
+// $(function(){
+//   var dudely = document.getElementById("dude").getContext("2d");
+//   dudely.strokeStyle = "rgb(80,80,255)  ";
+//   dudely.beginPath();
+//   var x,y, isFirst = true;
+//   for(t = 0.0; t< (Math.PI * 2+0.1); t += 0.02)
+//   {
+//     x = Math.cos(t) * 70 + Math.cos(t * 5) * 150 + 250;
+//     y = Math.sin(t) * 70 + Math.sin(t * 5) * 150 + 250;
+
+//     if(isFirst)
+//     {
+//       dudely.moveTo(x,y);
+//       isFirst = false;
+//     }
+//     else
+//       dudely.lineTo(x,y);
+//   }
+//   dudely.stroke();
+// });
