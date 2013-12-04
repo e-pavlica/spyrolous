@@ -1,10 +1,14 @@
+//for google apis client library
+onLoadCallback = function() {
+  window.setTimeout(startGameForReal, 1);
+}
+
+//draw on the #snap svg tag
 $(document).ready(function(){
-  //Draw a new Snap object
+  // makes a new Snap object
   var s = Snap("#snap");
 
-  //let's just put a big ol' circle there for now.
-  var circle = s.circle(100,100,50);
-
+  // draws a circle wherever you click on the svg element
   $("#spyro").click(function(e){
     var posX = $(this).offset().left;
     var posY = $(this).offset().top;
