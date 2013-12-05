@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Canvas do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has a valid factory" do
+    @canvas = FactoryGirl.create(:canvas)
+    expect(@canvas).to be_valid
+  end
 end

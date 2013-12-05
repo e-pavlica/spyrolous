@@ -11,12 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131204223325) do
+ActiveRecord::Schema.define(version: 20131205001201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "canvas", force: true do |t|
+  create_table "artists", force: true do |t|
+    t.string   "google_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "canvases", force: true do |t|
+    t.integer  "artists_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -26,13 +33,6 @@ ActiveRecord::Schema.define(version: 20131204223325) do
     t.float    "y"
     t.float    "radius"
     t.integer  "layer_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "games", force: true do |t|
-    t.text     "data"
-    t.integer  "user"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

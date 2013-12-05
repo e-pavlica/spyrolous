@@ -1,0 +1,15 @@
+%h1 Spyrolous
+.pure-g-r
+  .pure-u-1-5.side
+    #circle{class:"pure-button"} circle
+  #spyro.pure-u-3-5
+    %svg{id:"canvas", class:"pure-u-1"}
+    / <canvas id="dude" width="500" height="500" style = "border:2px solid black" ></canvas>
+  .pure-u-1-5.side
+    -@canvas.layers.each do |l|
+      .layerThumb{layer_id:"#{l.id}"}
+        =l.id
+      %br
+
+:javascript
+  var canvas_id = "#{params[:id]}"

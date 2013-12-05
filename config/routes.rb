@@ -1,6 +1,13 @@
 Spyrolous::Application.routes.draw do
-  #set the root
-  get "/" => "pages#index"
 
-  resources :games
+resources :canvases do
+  resources :layers do 
+    resources :circles
+    resources :rectangles
+    resources :paths
+  end
+end
+
+get "/dashboard" => "artists#show"
+
 end
