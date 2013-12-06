@@ -2,6 +2,7 @@
 .pure-g-r
   .pure-u-1-5.side
     #circle{class:"pure-button"} circle
+    %input{type:"number", class:"circleRadius", value:"50"}
   #spyro.pure-u-3-5
     %svg{id:"canvas", class:"pure-u-1"}
     / <canvas id="dude" width="500" height="500" style = "border:2px solid black" ></canvas>
@@ -13,3 +14,11 @@
 
 :javascript
   var canvas_id = "#{params[:id]}"
+
+/draw circles to canvas
+- @canvas.layers.each do |l|
+  -l.circles.each do |c|
+    :javascript
+      $(document).ready(function(){
+      s.circle(#{c.x},#{c.y},#{c.radius})
+      });

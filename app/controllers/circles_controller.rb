@@ -6,7 +6,7 @@ class CirclesController < ApplicationController
     @layer = Layer.find(params[:layer_id])
     if @circle.save
       respond_with @circle do |format|
-        format.json {render json: [@layer, @circle] }
+        format.json {render json: @circle }
       end
     else
       respond_with @circle.errors

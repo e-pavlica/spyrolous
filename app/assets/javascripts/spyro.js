@@ -4,6 +4,9 @@ var layer_id;
 // define a variable to tell draw function what to do
 var drawType;
 
+// define a variable for the snap canvas
+var s;
+
 $(document).ready(function(){
   // intercept clicks on layer thumbnails to set the active layer
   $(".layerThumb").bind("click", setLayerId);
@@ -13,7 +16,8 @@ $(document).ready(function(){
   $("#circle").click(function(){
     drawType = "circle";
   });
-
+  // Setup the Snap canvas
+  s = Snap("#canvas");
 })
 
 // set the active layer
@@ -42,13 +46,13 @@ function draw(e) {
   }
 }
 
-
+// post the circle to the database and draw it to the canvas
 function postCircle(data){
   $.post(
     "/canvases/"+canvas_id+"/layers/"+layer_id+"/circles",
     data,
-    function(success){
-      console.log(success);
+    function(response){
+      s.circle(response.x, response.y, response.radius);
   });
 }
 
