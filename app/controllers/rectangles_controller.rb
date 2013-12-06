@@ -14,7 +14,12 @@ class RectanglesController < ApplicationController
   end
 
   def destroy
-
+    @rectangle = Rectangle.find(params[:id])
+    if @rectangle.destroy
+      respond_with @rectangle, status: 200
+    else
+      respond_with @rectangle.errors
+    end
   end
 
   private

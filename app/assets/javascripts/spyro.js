@@ -92,4 +92,14 @@ function deleteCircle(){
     $(this).remove();
   });
 }
-  
+
+// delete a rectangle when it's clicked on
+function deleteRect(){
+  $('rect').click(function(){
+    $.ajax({
+      type:"DELETE",
+      url:"/canvases/"+canvas_id+"/layers/"+layer_id+"/rectangles/"+$(this).attr("id")
+    });
+    $(this).remove();
+  });
+}
