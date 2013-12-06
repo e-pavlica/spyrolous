@@ -20,13 +20,25 @@
         =l.id
       %br
 
-:javascript
+<script>
+:plain
   var canvas_id = "#{params[:id]}"
+  var a,
+      b;
+  $(document).ready(function(){
 
-/draw circles to the canvas
 - @canvas.layers.each do |l|
+  /draw circles to the canvas
   -l.circles.each do |c|
-    :javascript
-      $(document).ready(function(){
-      s.circle(#{c.x},#{c.y},#{c.radius})
-      });
+    :plain
+      a = s.circle(#{c.x},#{c.y},#{c.radius});
+      a.node.id = "#{c.id}";
+  /draw rectangles to the canvas
+  -l.rectangles.each do |r|
+    :plain
+      b = s.rect(#{r.x},#{r.y},#{r.width},#{r.height});
+      b.node.id = "#{r.id}";
+  //have to call these after svg objects have been loaded
+  deleteCircle();
+  });
+</script>

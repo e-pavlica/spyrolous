@@ -23,6 +23,8 @@ $(document).ready(function(){
 
   // Setup the Snap canvas
   s = Snap("#canvas");
+
+  // deleteCircle();
 })
 
 // set the active layer
@@ -51,6 +53,7 @@ function draw(e) {
     postCircle(data);
   }
   if(drawType == "rectangle"){
+
     //define the data to post to the rectangles model
     var data = {rectangle:{x: x, y: y, width: $("#rectWidth").val(), height: $("#rectHeight").val()}};
     postRect(data);
@@ -73,7 +76,20 @@ function postRect(data){
     "/canvases/"+canvas_id+"/layers/"+layer_id+"/rectangles",
     data,
     function(response){
-      s.rect(response.x, response.y, response.width, response.height);
+      var x = s.rect(response.x, response.y, response.width, response.height);
+      x.id = "Rect"+response.id;
     }
-    )
+  )
 }
+
+// delete a circle when it's clicked on
+function deleteCircle(){
+  $('circle').click(function(){
+    $.ajax({
+      type:"DELETE",
+      url:"/canvases/"+canvas_id+"/layers/"+layer_id+"/circles/"+$(this).attr("id")
+    });
+    $(this).remove();
+  });
+}
+  

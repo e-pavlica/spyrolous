@@ -1,6 +1,6 @@
 class CirclesController < ApplicationController
   respond_to :json
-  
+
   def create
     @circle = Circle.new(circle_params)
     @circle.layer_id = params[:layer_id]
@@ -15,7 +15,12 @@ class CirclesController < ApplicationController
   end
 
   def destroy
-    
+    @circle = Circle.find(params[:id].to_i)
+    if @circle.destroy
+      respond_with @circle, status: 200
+    else
+      respond_with @circle, status: 500
+    end
   end
 
   private
