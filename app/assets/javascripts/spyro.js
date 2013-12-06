@@ -12,10 +12,15 @@ $(document).ready(function(){
   $(".layerThumb").bind("click", setLayerId);
   // draw a new object on the canvas.
   $("#spyro").click(draw);
-  // intercept clicks to set drawType to circle
+  // set drawType to circle
   $("#circle").click(function(){
     drawType = "circle";
   });
+  // set drawType to rectangle
+  $("#rectangle").click(function(){
+    drawType = "rectangle";
+  })
+
   // Setup the Snap canvas
   s = Snap("#canvas");
 })
@@ -34,15 +39,21 @@ function changeColor(e){
 
 
 function draw(e) {
+  // define the position of the element based on click event
+  var posX = $(e.target).offset().left;
+  var posY = $(e.target).offset().top;
+  var x = e.pageX - posX;
+  var y = e.pageY - posY;
+  
   if(drawType == "circle") {
     // define the data to post to the circles model
-    var posX = $(e.target).offset().left;
-    var posY = $(e.target).offset().top;
-    var x = e.pageX - posX;
-    var y = e.pageY - posY;
-    var data = {circle:{x: x, y: y, radius: 50}};
+    var data = {circle:{x: x, y: y, radius: $("#circleRadius").val()}};
     postCircle(data);
-
+  }
+  if(drawType == "rectangle"){
+    //define the data to post to the rectangles model
+    var data = {rectangle:{x: x, y: y, width: $("#rectWidth").val(), height: $("#rectHeight").val()}};
+    postRect(data);
   }
 }
 
@@ -56,4 +67,13 @@ function postCircle(data){
   });
 }
 
-
+// post the rectangle to the database & draw it to the canvas
+function postRect(data){
+  $.post(
+    "/canvases/"+canvas_id+"/layers/"+layer_id+"/rectangles",
+    data,
+    function(response){
+      s.rect(response.x, response.y, response.width, response.height);
+    }
+    )
+}

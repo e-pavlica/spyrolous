@@ -1,5 +1,6 @@
 class CirclesController < ApplicationController
   respond_to :json
+  
   def create
     @circle = Circle.new(circle_params)
     @circle.layer_id = params[:layer_id]
