@@ -24,7 +24,8 @@ $(document).ready(function(){
   // Setup the Snap canvas
   s = Snap("#canvas");
 
-  // deleteCircle();
+
+
 })
 
 // set the active layer
@@ -101,5 +102,33 @@ function deleteRect(){
       url:"/canvases/"+canvas_id+"/layers/"+layer_id+"/rectangles/"+$(this).attr("id")
     });
     $(this).remove();
+  });
+}
+
+// Change the color attributes of the snap layer
+function colorButtons(){
+  // !!!!!NEED TO SEND THESE ATTR TO THE DATABASE
+  $("#fillRed").click(function(){
+    s.attr({fill:"#FF0000"});
+  });
+
+  $("#fillBlue").click(function(){
+    s.attr({fill:"#0000FF"});
+  });
+
+ $("#fillGreen").click(function(){
+    s.attr({fill:"#00FF00"});
+ });
+
+  $("#strokeRed").click(function(){
+    s.attr({stroke:"#FF0000"});
+  });
+
+  $("#strokeBlue").click(function(){
+    s.attr({stroke:"#0000FF"});
+  });
+
+  $("#strokeGreen").click(function(){
+    s.attr({stroke:"#00FF00"});
   });
 }

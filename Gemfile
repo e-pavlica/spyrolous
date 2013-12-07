@@ -9,6 +9,9 @@ gem 'pg'
 #use HAML markup for templates
 gem "haml"
 
+# use font awesome for icons
+gem 'font-awesome-sass'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.1'
 
