@@ -45,8 +45,10 @@ function setLayerId(e) {
 
 // change the color of the active layer
 function changeColor(e) {
+  // clear color off of the previous active layer
+  $(".layerThumb").css('background', 'white');
+  // change the background color of the new active div
   $(e.target).css('background', 'rgba(190,60,60,0.7');
-  // prob need a function here to clear color off of the previous active layer
 }
 
 

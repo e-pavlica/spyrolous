@@ -21,6 +21,8 @@
 
   #spyro.pure-u-3-5
     %svg{id:"canvas", class:"pure-u-1"}
+
+
   .pure-u-1-5.side
     #newLayerBtn{class:"pure-button"} New Layer
     -@canvas.layers.each do |l|
@@ -46,6 +48,13 @@
     :plain
       b = s.rect(#{r.x},#{r.y},#{r.width},#{r.height});
       b.node.id = "#{r.id}";
+  / load color attrs
+  :plain
+    s.attr({
+      fill: "#{l.fill}",
+      stroke: "#{l.stroke}",
+      opacity: "#{l.opacity}"
+    })
   /have to call these after svg objects have been loaded
   deleteCircle();
   deleteRect();
