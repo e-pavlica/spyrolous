@@ -8,6 +8,8 @@ resources :canvases do
   end
 end
 
+resources :artists
+
 get "/dashboard" => "artists#show"
 
 end

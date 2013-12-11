@@ -12,6 +12,12 @@ gem "haml"
 # use font awesome for icons
 gem 'font-awesome-sass'
 
+# use figaro to keep api keys private
+gem 'figaro'
+
+# use google apis
+gem 'google-api-client'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.1'
 

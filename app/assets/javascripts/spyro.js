@@ -7,36 +7,45 @@ var drawType;
 // define a variable for the snap canvas
 var s;
 
-$(document).ready(function(){
+$(document).ready(function() {
+
   // intercept clicks on layer thumbnails to set the active layer
-  $(".layerThumb").bind("click", setLayerId);
+  $('.layerThumb').bind('click', setLayerId);
   // draw a new object on the canvas.
-  $("#spyro").click(draw);
+  $('#spyro').click(draw);
   // set drawType to circle
-  $("#circle").click(function(){
-    drawType = "circle";
+  $('#circle').click(function() {
+    drawType = 'circle';
   });
   // set drawType to rectangle
-  $("#rectangle").click(function(){
-    drawType = "rectangle";
-  })
+  $('#rectangle').click(function() {
+    drawType = 'rectangle';
+  });
 
   // Setup the Snap canvas
-  s = Snap("#canvas");
+  s = Snap('#canvas');
 
+  // Set the default layer_id to the first layer.
+  layer_id = $('.layerThumb').first().attr('layer_id');
+  $('.layerThumb').first().css('background', 'rgba(190,60,60,0.7');
 
+  //Add a new layer to the canvas
+  $('#newLayerBtn').click(function() {
+    // !!!!! FINISH ME !!!!!
+    $.post('/canvases/' + canvas_id + '/layers/', nil, nil);
+  });
 
-})
+});
 
 // set the active layer
-function setLayerId(e){
-  layer_id = $(e.target).attr("layer_id");
+function setLayerId(e) {
+  layer_id = $(e.target).attr('layer_id');
   changeColor(e);
 }
 
 // change the color of the active layer
-function changeColor(e){
-  $(e.target).css("background","rgba(190,60,60,0.7");
+function changeColor(e) {
+  $(e.target).css('background', 'rgba(190,60,60,0.7');
   // prob need a function here to clear color off of the previous active layer
 }
 
@@ -47,88 +56,106 @@ function draw(e) {
   var posY = $(e.target).offset().top;
   var x = e.pageX - posX;
   var y = e.pageY - posY;
-  
-  if(drawType == "circle") {
+
+  if (drawType == 'circle') {
     // define the data to post to the circles model
-    var data = {circle:{x: x, y: y, radius: $("#circleRadius").val()}};
+    var data = {circle: {x: x, y: y, radius: $('#circleRadius').val()}};
     postCircle(data);
   }
-  if(drawType == "rectangle"){
 
+  if (drawType == 'rectangle') {
     //define the data to post to the rectangles model
-    var data = {rectangle:{x: x, y: y, width: $("#rectWidth").val(), height: $("#rectHeight").val()}};
+    var data = {rectangle: {
+      x: x,
+      y: y,
+      width: $('#rectWidth').val(),
+      height: $('#rectHeight').val()}
+    };
     postRect(data);
   }
 }
 
 // post the circle to the database and draw it to the canvas
-function postCircle(data){
+function postCircle(data) {
   $.post(
-    "/canvases/"+canvas_id+"/layers/"+layer_id+"/circles",
+    '/canvases/' + canvas_id + '/layers/' + layer_id + '/circles',
     data,
-    function(response){
+    function(response) {
       s.circle(response.x, response.y, response.radius);
   });
 }
 
 // post the rectangle to the database & draw it to the canvas
-function postRect(data){
+function postRect(data) {
   $.post(
-    "/canvases/"+canvas_id+"/layers/"+layer_id+"/rectangles",
+    '/canvases/' + canvas_id + '/layers/' + layer_id + '/rectangles',
     data,
-    function(response){
+    function(response) {
       var x = s.rect(response.x, response.y, response.width, response.height);
-      x.id = "Rect"+response.id;
+      x.id = 'Rect' + response.id;
     }
-  )
+  );
 }
 
 // delete a circle when it's clicked on
-function deleteCircle(){
-  $('circle').click(function(){
+function deleteCircle() {
+  $('circle').click(function() {
     $.ajax({
-      type:"DELETE",
-      url:"/canvases/"+canvas_id+"/layers/"+layer_id+"/circles/"+$(this).attr("id")
+      type: 'DELETE',
+      url: '/canvases/' + canvas_id + '/layers/' + layer_id + '/circles/' + $(this).attr('id')
     });
     $(this).remove();
   });
 }
 
 // delete a rectangle when it's clicked on
-function deleteRect(){
-  $('rect').click(function(){
+function deleteRect() {
+  $('rect').click(function() {
     $.ajax({
-      type:"DELETE",
-      url:"/canvases/"+canvas_id+"/layers/"+layer_id+"/rectangles/"+$(this).attr("id")
+      type: 'DELETE',
+      url: '/canvases/' + canvas_id + '/layers/' + layer_id + '/rectangles/' + $(this).attr('id')
     });
     $(this).remove();
   });
 }
 
 // Change the color attributes of the snap layer
-function colorButtons(){
+function colorButtons() {
   // !!!!!NEED TO SEND THESE ATTR TO THE DATABASE
-  $("#fillRed").click(function(){
-    s.attr({fill:"#FF0000"});
+  $('#fillRed').click(function() {
+    postAttr({fill: '#FF0000'});
   });
 
-  $("#fillBlue").click(function(){
-    s.attr({fill:"#0000FF"});
+  $('#fillBlue').click(function() {
+    postAttr({fill: '#0000FF'});
   });
 
- $("#fillGreen").click(function(){
-    s.attr({fill:"#00FF00"});
+ $('#fillGreen').click(function() {
+    postAttr({fill: '#00FF00'});
  });
 
-  $("#strokeRed").click(function(){
-    s.attr({stroke:"#FF0000"});
+  $('#strokeRed').click(function() {
+    postAttr({stroke: '#FF0000'});
   });
 
-  $("#strokeBlue").click(function(){
-    s.attr({stroke:"#0000FF"});
+  $('#strokeBlue').click(function() {
+    postAttr({stroke: '#0000FF'});
   });
 
-  $("#strokeGreen").click(function(){
-    s.attr({stroke:"#00FF00"});
+  $('#strokeGreen').click(function() {
+    postAttr({stroke: '#00FF00'});
   });
+
+  function postAttr(attr) {
+    $.ajax({
+      type: 'PATCH',
+      url: '/canvases/' + canvas_id + '/layers/' + layer_id,
+      data: {layer: attr},
+      success: function(success) {
+        s.attr(attr);
+      }
+    });
+
+  }
 }
+
