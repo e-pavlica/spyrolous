@@ -13,13 +13,17 @@ $(document).ready(function() {
   $('.layerThumb').bind('click', setLayerId);
   // draw a new object on the canvas.
   $('#spyro').click(draw);
+  
   // set drawType to circle
   $('#circle').click(function() {
     drawType = 'circle';
+    selectTypeBtn($(this));
   });
+
   // set drawType to rectangle
   $('#rectangle').click(function() {
     drawType = 'rectangle';
+    selectTypeBtn($(this));
   });
 
   // Setup the Snap canvas
@@ -161,3 +165,8 @@ function colorButtons() {
   }
 }
 
+// Show which typeBtn is currently selected.
+function selectTypeBtn(o){
+    $('.typeBtn').removeClass('selected');
+    o.addClass('selected');
+}

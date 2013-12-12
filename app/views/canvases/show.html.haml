@@ -1,22 +1,25 @@
 %h1 Spyrolous
 .pure-g-r
   .pure-u-1-5.side
-    #circle{class:"pure-button"} circle
+    #circle{class:"pure-button typeBtn"} circle
     %label Radius
     %input{type:"number", id:"circleRadius", class:"numInput", value:"50"}
     %br
-    #rectangle{class:"pure-button"} rectangle
+    #rectangle{class:"pure-button typeBtn"} rectangle
     %label height
     %input{type:"number", id:"rectHeight", class:"numInput", value:"50"}
     %label width
     %input{type:"number", id:"rectWidth", class:"numInput", value:"50"}
     %hr
-    %i{class:"pure-button fa fa-circle fa-2x red", id:"fillRed"}
-    %i{class:"pure-button fa fa-circle fa-2x blue", id:"fillBlue"}
-    %i{class:"pure-button fa fa-circle fa-2x green", id:"fillGreen"}
-    %i{class:"pure-button fa fa-circle-o fa-2x red", id:"strokeRed"}
-    %i{class:"pure-button fa fa-circle-o fa-2x blue", id:"strokeBlue"}
-    %i{class:"pure-button fa fa-circle-o fa-2x green", id:"strokeGreen"}
+    %h4 fill
+    %i{class:"colorBtn fa fa-circle fa-2x red", id:"fillRed"}
+    %i{class:"colorBtn fa fa-circle fa-2x blue", id:"fillBlue"}
+    %i{class:"colorBtn fa fa-circle fa-2x green", id:"fillGreen"}
+    %hr
+    %h4 stroke
+    %i{class:"colorBtn fa fa-circle-o fa-2x red", id:"strokeRed"}
+    %i{class:"colorBtn fa fa-circle-o fa-2x blue", id:"strokeBlue"}
+    %i{class:"colorBtn fa fa-circle-o fa-2x green", id:"strokeGreen"}
 
 
   #spyro.pure-u-3-5
