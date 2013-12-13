@@ -1,4 +1,5 @@
 class CanvasesController < ApplicationController
+
   respond_to :json, :html
   def new
     @canvas = Canvas.create()

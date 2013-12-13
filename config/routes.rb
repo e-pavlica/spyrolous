@@ -12,4 +12,7 @@ resources :artists
 
 get "/dashboard" => "artists#show"
 
+# route for live streaming the canvas to multiple users
+get "/canvases/:canvas_id/layers/:id/stream" => "layers#stream"
+
 end
