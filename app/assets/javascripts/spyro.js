@@ -87,7 +87,7 @@ function postCircle(data) {
     '/canvases/' + canvas_id + '/layers/' + layer_id + '/circles',
     data,
     function(response) {
-      s.circle(response.x, response.y, response.radius);
+      // s.circle(response.x, response.y, response.radius);
   });
 }
 
