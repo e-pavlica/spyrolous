@@ -97,8 +97,8 @@ function postRect(data) {
     '/canvases/' + canvas_id + '/layers/' + layer_id + '/rectangles',
     data,
     function(response) {
-      var x = s.rect(response.x, response.y, response.width, response.height);
-      x.id = 'Rect' + response.id;
+      // var x = s.rect(response.x, response.y, response.width, response.height);
+      // x.id = 'Rect' + response.id;
     }
   );
 }

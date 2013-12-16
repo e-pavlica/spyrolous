@@ -9,5 +9,9 @@ function subscribeToLayers(id) {
       var a = s.circle(newData.circle.x, newData.circle.y, newData.circle.radius);
       a.node.id = newData.circle.id;
     }
+    if (newData.rect) {
+      var a = s.rect(newData.rect.x, newData.rect.y, newData.rect.width, newData.rect.height);
+      a.node.id = newData.rect.id;
+    }
   });
 }
