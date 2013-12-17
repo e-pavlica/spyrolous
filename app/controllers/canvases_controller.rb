@@ -4,6 +4,7 @@ class CanvasesController < ApplicationController
   def new
     @canvas = Canvas.create()
     @canvas.layers << Layer.create()
+    @canvas.artists << current_user
     redirect_to canvas_path(@canvas)
   end
 

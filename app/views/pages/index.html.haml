@@ -1,12 +1,6 @@
-%h1 Spyrolous
 .pure-g-r
-  .pure-u-1-5.side
-    #newGame{class:"pure-button"} new Game
-    %input{type:"text", id:"test_id"}
-    #loadTest{class:"pure-button"} load game
-  #spyro.pure-u-3-5
-    %svg{id:"snap", class:"pure-u-1"}
-    / <canvas id="dude" width="500" height="500" style = "border:2px solid black" ></canvas>
-  .pure-u-1-5.side
-    =text_field(:game, :id)
-    =text_field(:game, :data)
+  .pure-u-1
+    %h1 Spyrolous
+  .pure-u-2-3
+    %p Welcome to Spyrolous. Please log in to continue.
+    =link_to "Login with Google", '/auth/google_oauth2', class:"pure-button"

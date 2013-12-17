@@ -13,7 +13,11 @@ class ArtistsController < ApplicationController
 
 
   def show
-    @artist = current_user
+    if current_user
+      @artist = current_user
+    else 
+      redirect_to root
+    end
     # need to show the canvases associated with each user here
     # render canvases#index as partial?
   end
@@ -21,7 +25,6 @@ class ArtistsController < ApplicationController
   private
 
   def auth_hash
-     request.env['omniauth.auth']
+    request.env['omniauth.auth']
   end
-
 end

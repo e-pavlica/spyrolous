@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20131217192852) do
   end
 
   create_table "artists_canvases", force: true do |t|
-    t.integer "artists_id"
-    t.integer "canvases_id"
+    t.integer "artist_id"
+    t.integer "canvas_id"
   end
 
   create_table "canvases", force: true do |t|
