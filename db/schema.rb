@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 20131216213850) do
   end
 
   create_table "layers", force: true do |t|
-    t.string   "fill"
-    t.string   "stroke"
-    t.string   "opacity"
+    t.string   "fill",       default: "none"
+    t.string   "stroke",     default: "black"
+    t.string   "opacity",    default: "1"
     t.integer  "canvas_id"
     t.datetime "created_at"
     t.datetime "updated_at"

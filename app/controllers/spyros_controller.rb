@@ -22,9 +22,16 @@ class SpyrosController < ApplicationController
   def destroy
     @spyro = Spyro.find(params[:id].to_i)
     if @spyro.destroy
-      respond_with @spyro
+      respond_with :ok
     else
       respond_with @spyro.errors
+    end
+  end
+
+  def show
+    @spyro = Spyro.find(params[:id])
+    respond_with @spyro do |f|
+      f.json {render json: @spyro }
     end
   end
 

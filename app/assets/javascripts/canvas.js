@@ -1,4 +1,3 @@
-var socketTest;
 
 function subscribeToLayers(id) {
   var source = new EventSource('/canvases/' + canvas_id + '/layers/' + id + '/stream');
@@ -14,8 +13,14 @@ function subscribeToLayers(id) {
       a.node.id = newData.rect.id;
     }
     if (newData.spyro) {
-      var a = s.path(newData.spyro.path);
-      a.node.id = newData.spyro.id;
+      console.log(newData.spyro);
+      $.get(
+        '/canvases/' + canvas_id + '/layers/' + id + '/spyros/' + newData.spyro,
+        null,
+        function(data) {
+          var a = s.path(data.path);
+          a.node.id = data.id;
+        });
     }
   });
 }

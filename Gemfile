@@ -53,6 +53,9 @@ end
 #add Passenger as the HTTP server
 gem 'passenger'
 
+# trying Puma instead of passenger
+gem 'puma'
+
 #setup sum testing shtuff (using rspec instead of test::unit)
 group :development, :test do
   gem 'rspec-rails'

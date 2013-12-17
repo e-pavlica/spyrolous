@@ -1,13 +1,13 @@
-// define a variable that will hold the active layer id
-var layer_id;
+  // define a variable that will hold the active layer id
+  var layer_id;
 
-// define a variable to tell draw function what to do
-var drawType;
+  // define a variable to tell draw function what to do
+  var drawType;
 
-// define a variable for the snap canvas
-var s;
+  // define a variable for the snap canvas
+  var s;
 
-$(document).ready(function() {
+$(document).on('page:load || page:change', function() {
 
   // intercept clicks on layer thumbnails to set the active layer
   $('.layerThumb').bind('click', setLayerId);
@@ -27,11 +27,11 @@ $(document).ready(function() {
     selectTypeBtn($(this));
   });
 
-  // setDrawType to spyron
+  // setDrawType to spyro
   $('#spyro').click(function() {
     drawType = 'spyro';
     selectTypeBtn($(this));
-  })
+  });
 
   // Setup the Snap canvas
   s = Snap('#canvas');
@@ -42,8 +42,11 @@ $(document).ready(function() {
 
   //Add a new layer to the canvas
   $('#newLayerBtn').click(function() {
-    // !!!!! FINISH ME !!!!!
-    $.post('/canvases/' + canvas_id + '/layers/', nil, nil);
+    $.post('/canvases/' + canvas_id + '/layers/', 
+      null,
+      function(response) {
+        $('.layerContainer').append('<div class="layerThumb" layer_id="' + response.id + '"></div>');
+      } );
   });
 
 });
@@ -89,12 +92,13 @@ function draw(e) {
 
   if (drawType == 'spyro') {
     // define the data to post for a new spyro path
+    console.log('making a new spyro');
     var data = {spyro: {
       x: x,
       y: y,
-      largeRadius: $("#spyroRadiusLarge").val(),
-      smallRadius: $("#spyroRadiusSmall").val(),
-      rho: $("#spyroRho").val()}
+      largeRadius: $('#spyroRadiusLarge').val(),
+      smallRadius: $('#spyroRadiusSmall').val(),
+      rho: $('#spyroRho').val()}
     };
     postSpyro(data);
   }
