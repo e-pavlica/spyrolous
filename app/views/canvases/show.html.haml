@@ -14,7 +14,7 @@
     #spyro{class:"pure-button typeBtn"} spyro
     %input{type:"number", id:"spyroRadiusLarge", class:"numInput", value:"100"}
     %input{type:"number", id:"spyroRadiusSmall", class:"numInput", value:"5"}
-    %input{type:"number", id:"spyroPoint", class:"numInput", value:"50"}
+    %input{type:"number", id:"spyroRho", class:"numInput", value:"50"}
     %hr
     %h4 fill
     %i{class:"colorBtn fa fa-circle fa-2x red", id:"fillRed"}
@@ -27,7 +27,7 @@
     %i{class:"colorBtn fa fa-circle-o fa-2x green", id:"strokeGreen"}
 
 
-  #spyro.pure-u-3-5
+  #snapContainer.pure-u-3-5
     %svg{id:"canvas", class:"pure-u-1"}
 
 
@@ -58,6 +58,11 @@
     :plain
       b = s.rect(#{r.x},#{r.y},#{r.width},#{r.height});
       b.node.id = "#{r.id}";
+  / draw spyros to the canvas
+  -l.spyros.each do |sp|
+    :plain
+      c = s.path("#{sp.path}");
+      c.node.id = "#{sp.id}"
   / load color attrs
   :plain
     s.attr({

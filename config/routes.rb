@@ -1,10 +1,13 @@
 Spyrolous::Application.routes.draw do
 
+# need to clean up these routes to be more specific since I'm not writing all of the standard methods in the controllers
+
 resources :canvases do
   resources :layers do 
     resources :circles
     resources :rectangles
     resources :paths
+    resources :spyros
   end
 end
 

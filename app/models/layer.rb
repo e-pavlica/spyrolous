@@ -2,6 +2,7 @@ class Layer < ActiveRecord::Base
   has_many :circles
   has_many :paths
   has_many :rectangles
+  has_many :spyros
 
   def on_change
     connection.execute "LISTEN #{channel}"

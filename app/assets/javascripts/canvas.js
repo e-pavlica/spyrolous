@@ -13,5 +13,9 @@ function subscribeToLayers(id) {
       var a = s.rect(newData.rect.x, newData.rect.y, newData.rect.width, newData.rect.height);
       a.node.id = newData.rect.id;
     }
+    if (newData.spyro) {
+      var a = s.path(newData.spyro.path);
+      a.node.id = newData.spyro.id;
+    }
   });
 }

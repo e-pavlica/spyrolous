@@ -8,6 +8,9 @@ gem 'rails', '4.0.2'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+# Relationship diagrams
+gem "rails-erd"
+
 #use HAML markup for templates
 gem "haml"
 

@@ -11,9 +11,10 @@ $(document).ready(function() {
 
   // intercept clicks on layer thumbnails to set the active layer
   $('.layerThumb').bind('click', setLayerId);
+
   // draw a new object on the canvas.
-  $('#spyro').click(draw);
-  
+  $('#snapContainer').click(draw);
+
   // set drawType to circle
   $('#circle').click(function() {
     drawType = 'circle';
@@ -25,6 +26,12 @@ $(document).ready(function() {
     drawType = 'rectangle';
     selectTypeBtn($(this));
   });
+
+  // setDrawType to spyron
+  $('#spyro').click(function() {
+    drawType = 'spyro';
+    selectTypeBtn($(this));
+  })
 
   // Setup the Snap canvas
   s = Snap('#canvas');
@@ -50,7 +57,7 @@ function setLayerId(e) {
 // change the color of the active layer
 function changeColor(e) {
   // clear color off of the previous active layer
-  $(".layerThumb").css('background', 'white');
+  $('.layerThumb').css('background', 'white');
   // change the background color of the new active div
   $(e.target).css('background', 'rgba(190,60,60,0.7');
 }
@@ -79,6 +86,18 @@ function draw(e) {
     };
     postRect(data);
   }
+
+  if (drawType == 'spyro') {
+    // define the data to post for a new spyro path
+    var data = {spyro: {
+      x: x,
+      y: y,
+      largeRadius: $("#spyroRadiusLarge").val(),
+      smallRadius: $("#spyroRadiusSmall").val(),
+      rho: $("#spyroRho").val()}
+    };
+    postSpyro(data);
+  }
 }
 
 // post the circle to the database and draw it to the canvas
@@ -99,6 +118,16 @@ function postRect(data) {
     function(response) {
       // var x = s.rect(response.x, response.y, response.width, response.height);
       // x.id = 'Rect' + response.id;
+    }
+  );
+}
+
+function postSpyro(data) {
+  $.post(
+    '/canvases/' + canvas_id + '/layers/' + layer_id + '/spyros',
+    data,
+    function(response) {
+      // nothing to do here right now.
     }
   );
 }
@@ -127,7 +156,6 @@ function deleteRect() {
 
 // Change the color attributes of the snap layer
 function colorButtons() {
-  // !!!!!NEED TO SEND THESE ATTR TO THE DATABASE
   $('#fillRed').click(function() {
     postAttr({fill: '#FF0000'});
   });
@@ -166,7 +194,7 @@ function colorButtons() {
 }
 
 // Show which typeBtn is currently selected.
-function selectTypeBtn(o){
+function selectTypeBtn(o) {
     $('.typeBtn').removeClass('selected');
     o.addClass('selected');
 }
