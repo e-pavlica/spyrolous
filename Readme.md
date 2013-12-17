@@ -7,10 +7,11 @@ A webapp that uses the 3rd(+) screen as a canvas... multiple users can collabora
 
 Built in Javascript + Ruby 2.0 with:
 
-* Rails 4.0.1
+* Rails 4.0.2
 * HAML
-* Passenger (production server)
+* Puma (for multi-threaded processing)
 * Tests in RSpec
+* OmniAuth
 
 
 ----

@@ -17,3 +17,6 @@
 
 # Ignore application configuration
 /config/application.yml
+
+#ignore google client secrets
+/config/google_secrets.json

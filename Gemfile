@@ -23,6 +23,10 @@ gem 'figaro'
 # use google apis
 gem 'google-api-client'
 
+#use omniauth
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.1'
 
@@ -49,11 +53,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-
-#add Passenger as the HTTP server
-gem 'passenger'
-
-# trying Puma instead of passenger
+# using Puma as the server because it is mutli-threaded
 gem 'puma'
 
 #setup sum testing shtuff (using rspec instead of test::unit)
