@@ -1,6 +1,44 @@
 // Styles for Spyrolous
 
+@import url(http://fonts.googleapis.com/css?family=Over+the+Rainbow);
 
+body {
+  background: image-url("dark_wood.png");
+}
+
+nav {
+  background: rgba(255,255,255,0.7);
+  border-bottom: 1px solid white;
+  margin: 0 0 15px;
+}
 .side {
   background: #796D6D;
+}
+
+.title {
+  font-family: 'Over the Rainbow', cursive;
+  font-weight: normal;
+  margin: -16px 5px -20px;
+  text-shadow: 2px 2px 2px white;
+  font-size: 2.5em;
+}
+
+.pure-button.google {
+  background-color: #df4a32;
+  color: white;
+  font-weight: bold;
+}
+
+.card {
+  background: image-url("paper.png");
+  padding: 1em;
+  margin: 0.65em;
+  box-shadow: 0 0 10px white;
+}
+
+/* Media query for retina images */
+@media only screen and (min-resolution: 240dpi) {
+    body {
+      background: image-url("dark_wood_@2X.png");
+    }
 }
