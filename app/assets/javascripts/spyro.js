@@ -1,11 +1,8 @@
-  // define a variable that will hold the active layer id
-  var layer_id;
+// define a variable that will hold the active layer id
+var layer_id;
 
-  // define a variable to tell draw function what to do
-  var drawType;
-
-  // define a variable for the snap canvas
-  var s;
+// define a variable to tell draw function what to do
+var drawType;
 
 $(document).on('page:load || page:change', function() {
 
@@ -33,16 +30,13 @@ $(document).on('page:load || page:change', function() {
     selectTypeBtn($(this));
   });
 
-  // Setup the Snap canvas
-  s = Snap('#canvas');
-
   // Set the default layer_id to the first layer.
   layer_id = $('.layerThumb').first().attr('layer_id');
   $('.layerThumb').first().css('background', 'rgba(190,60,60,0.7');
 
   //Add a new layer to the canvas
   $('#newLayerBtn').click(function() {
-    $.post('/canvases/' + canvas_id + '/layers/', 
+    $.post('/canvases/' + canvas_id + '/layers/',
       null,
       function(response) {
         $('.layerContainer').append('<div class="layerThumb" layer_id="' + response.id + '"></div>');
@@ -72,16 +66,17 @@ function draw(e) {
   var posY = $(e.target).offset().top;
   var x = e.pageX - posX;
   var y = e.pageY - posY;
+  var data;
 
   if (drawType == 'circle') {
     // define the data to post to the circles model
-    var data = {circle: {x: x, y: y, radius: $('#circleRadius').val()}};
+    data = {circle: {x: x, y: y, radius: $('#circleRadius').val()}};
     postCircle(data);
   }
 
   if (drawType == 'rectangle') {
     //define the data to post to the rectangles model
-    var data = {rectangle: {
+    data = {rectangle: {
       x: x,
       y: y,
       width: $('#rectWidth').val(),
@@ -93,7 +88,7 @@ function draw(e) {
   if (drawType == 'spyro') {
     // define the data to post for a new spyro path
     console.log('making a new spyro');
-    var data = {spyro: {
+    data = {spyro: {
       x: x,
       y: y,
       largeRadius: $('#spyroRadiusLarge').val(),
@@ -141,7 +136,7 @@ function deleteCircle() {
   $('circle').click(function() {
     $.ajax({
       type: 'DELETE',
-      url: '/canvases/' + canvas_id + '/layers/' + layer_id + '/circles/' + $(this).attr('id')
+      url: '/canvases/' + canvas_id + '/layers/' + $(this).attr('layer_id') + '/circles/' + $(this).attr('circle_id')
     });
     $(this).remove();
   });
@@ -152,7 +147,7 @@ function deleteRect() {
   $('rect').click(function() {
     $.ajax({
       type: 'DELETE',
-      url: '/canvases/' + canvas_id + '/layers/' + layer_id + '/rectangles/' + $(this).attr('id')
+      url: '/canvases/' + canvas_id + '/layers/' + $(this).attr('layer_id') + '/rectangles/' + $(this).attr('rect_id')
     });
     $(this).remove();
   });
@@ -190,7 +185,7 @@ function colorButtons() {
       url: '/canvases/' + canvas_id + '/layers/' + layer_id,
       data: {layer: attr},
       success: function(success) {
-        s.attr(attr);
+        // s.attr(attr);
       }
     });
 

@@ -6,6 +6,13 @@
     =javascript_include_tag "application", "data-turbolinks-track" => true
     =yield :head
     =csrf_meta_tags
-    / this is the HAML version
   %body
+    %nav.pure-u-1
+      %h1{class:"title"} Spyrolous
+      .artist
+        -if current_user
+          Welcome, #{current_user.id}
+          /add a logout button here.
+        -else
+          =link_to "<i class='fa fa-google-plus fa2'> </i>  Login with Google".html_safe, '/auth/google_oauth2', class:"pure-button google"
     =yield

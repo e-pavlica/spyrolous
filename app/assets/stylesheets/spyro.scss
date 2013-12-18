@@ -1,5 +1,9 @@
 // Styles for Spyrolous
 
+$mustard: #ad8329;
+$teal: #374d4f;
+$plum: #7e3b60;
+
 @import url(http://fonts.googleapis.com/css?family=Over+the+Rainbow);
 
 body {
@@ -12,7 +16,7 @@ nav {
   margin: 0 0 15px;
 }
 .side {
-  background: #796D6D;
+  // background: #796D6D;
 }
 
 .title {
@@ -21,6 +25,7 @@ nav {
   margin: -16px 5px -20px;
   text-shadow: 2px 2px 2px white;
   font-size: 2.5em;
+  color: darken($plum, 15%);
 }
 
 .pure-button.google {
@@ -36,9 +41,62 @@ nav {
   box-shadow: 0 0 10px white;
 }
 
+.artist {
+  position: absolute;
+  left: 85%;
+  top: 0;
+}
+
+// Styles for the canvas page
+
+#canvas {
+  height: 960px;
+  width: 960px;
+}
+
+#snapContainer svg{
+  position: absolute;
+}
+
+.layerThumb {
+  width: 90%;
+  margin: 20px auto;
+  background: white;
+  box-shadow: 3px 3px 3px black;
+  height: 40px;
+}
+
+.pure-button.selected {
+  background-color: desaturate($teal, 15%);
+}
+
+
+
+// these should be depreciated soon.
+.numInput {
+  width: 50px;
+  box-shadow: none;
+  border: 0;
+  border-radius: 3px;
+}
+
+.colorBtn.red {
+  color:#FF0000;
+}
+.colorBtn.blue {
+  color:#0000FF;
+}
+.colorBtn.green {
+  color:#00FF00;
+}
+
+
 /* Media query for retina images */
 @media only screen and (min-resolution: 240dpi) {
     body {
       background: image-url("dark_wood_@2X.png");
+    }
+    .card {
+      background: image-url("paper_@2X.png");
     }
 }
