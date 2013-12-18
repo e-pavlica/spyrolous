@@ -12,7 +12,7 @@ Built in Javascript + Ruby 2.0 with:
 * Puma (for multi-threaded processing)
 * Tests in RSpec
 * OmniAuth
-
+* Backgrounds from http://subtlepatterns.com/
 
 ----
 

@@ -43,6 +43,12 @@ $(document).on('page:load || page:change', function() {
       });
   });
 
+  // Initialize the color picker.
+  $('#fillPicker').spectrum({
+    color: "#000",
+    allowEmpty: true
+  });
+
 });
 
 //make drawn objects clickable
