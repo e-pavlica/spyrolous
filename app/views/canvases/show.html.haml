@@ -41,8 +41,11 @@
 :plain
   // set the canvas id for jQuery calls
   var canvas_id = "#{params[:id]}"
-  // var a, b, l2, l3;
-  $(document).ready(function() {
+  //set the snap variables so they are available in the global scope
+-@canvas.layers.each do |l|
+  var l#{l.id};
+
+$(document).ready(function() {
 
 -@canvas.layers.each do |l|
   / each layer will get its own snap svg
