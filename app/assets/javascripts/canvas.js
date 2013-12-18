@@ -1,26 +1,32 @@
 
 function subscribeToLayers(id) {
-  // var s = 'l' + id;
   var a;
   var source = new EventSource('/canvases/' + canvas_id + '/layers/' + id + '/stream');
   source.addEventListener('update', function(e) {
     newData = JSON.parse(e.data);
     if (newData.circle) {
       a = window['l' + id].circle(newData.circle.x, newData.circle.y, newData.circle.radius);
-      a.node.id = newData.circle.id;
+      a.node.id = 'circle' + newData.circle.id;
+      $('circle').last().attr('circle_id', newData.circle.id);
+      $('circle').last().attr('layer_id', id);
+      initialize();
     }
     if (newData.rect) {
       a = window['l' + id].rect(newData.rect.x, newData.rect.y, newData.rect.width, newData.rect.height);
-      a.node.id = newData.rect.id;
+      $('rect').last().attr('rect_id', newData.rect.id);
+      $('rect').last().attr('layer_id', id);
+      initialize();
     }
     if (newData.spyro) {
       $.get(
         '/canvases/' + canvas_id + '/layers/' + id + '/spyros/' + newData.spyro,
         null,
         function(data) {
-          a = window['l' + id].path(data.path);
-          a.node.id = data.id;
+          window['l' + id].path(data.path);
+          $('path').last().attr('spyro_id', data.id);
+          $('path').last().attr('layer_id', id);
         });
+      initialize();
     }
     if (newData.layer) {
       window['l' + id].attr({
@@ -28,6 +34,18 @@ function subscribeToLayers(id) {
         stroke: newData.layer.stroke,
         opacity: newData.layer.opacity
       });
+    }
+    if (newData.destroy) {
+      var d = newData.destroy;
+      if (d.circle) {
+        $('circle[circle_id =' + d.circle + ']').remove();
+      }
+      if (d.rect) {
+        $('rect[rect_id =' + d.rect + ']').remove();
+      }
+      if (d.spyro) {
+        $('path[spyro_id =' + d.spyro + ']').remove();
+      }
     }
   });
 }

@@ -1,13 +1,16 @@
 class Spyro < ActiveRecord::Base
   after_save :notify_spyro_change
+  after_destroy :notify_spyro_delete
 
   def notify_spyro_change
-    connection.execute "NOTIFY #{channel}," + "'{" + '"spyro":' + self.id.to_json + "}'"
+    connection.execute "NOTIFY #{channel},'{\"spyro\":#{self.to_json}}'"
   end
 
+  def notify_spyro_delete
+    connection.execute "NOTIFY #{channel}, '{\"destroy\":{\"spyro\":#{self.id}}}'"
+  end
 
   def generate(xOffset, yOffset, bigRadius, smallRadius, point)
-    # puts xOffset + "," + yOffset + "," + bigRadius + "," +smallRadius + "," + point
     path = ""
     r1 = bigRadius
     r2 = smallRadius

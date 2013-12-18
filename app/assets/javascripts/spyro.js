@@ -45,6 +45,14 @@ $(document).on('page:load || page:change', function() {
 
 });
 
+//make drawn objects clickable
+function initialize() {
+  deleteCircle();
+  deleteRect();
+  colorButtons();
+  deleteSpyro();
+}
+
 // set the active layer
 function setLayerId(e) {
   layer_id = $(e.target).attr('layer_id');
@@ -140,7 +148,7 @@ function deleteCircle() {
       type: 'DELETE',
       url: '/canvases/' + canvas_id + '/layers/' + $(this).attr('layer_id') + '/circles/' + $(this).attr('circle_id')
     });
-    $(this).remove();
+    // $(this).remove();
   });
 }
 
@@ -151,7 +159,16 @@ function deleteRect() {
       type: 'DELETE',
       url: '/canvases/' + canvas_id + '/layers/' + $(this).attr('layer_id') + '/rectangles/' + $(this).attr('rect_id')
     });
-    $(this).remove();
+    // $(this).remove();
+  });
+}
+
+function deleteSpyro() {
+  $('path[spyro_id]').click(function() {
+    $.ajax({
+      type: 'DELETE',
+      url: '/canvases/' + canvas_id + '/layers/' + $(this).attr('layer_id') + '/spyros/' + $(this).attr('spyro_id')
+    });
   });
 }
 
@@ -199,3 +216,4 @@ function selectTypeBtn(o) {
     $('.typeBtn').removeClass('selected');
     o.addClass('selected');
 }
+
