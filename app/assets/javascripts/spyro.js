@@ -40,7 +40,7 @@ $(document).on('page:load || page:change', function() {
       null,
       function(response) {
         $('.layerContainer').append('<div class="layerThumb" layer_id="' + response.id + '"></div>');
-      } );
+      });
   });
 
 });
@@ -48,6 +48,8 @@ $(document).on('page:load || page:change', function() {
 // set the active layer
 function setLayerId(e) {
   layer_id = $(e.target).attr('layer_id');
+  $('#snapContainer svg').css('z-index', '0');
+  $('#l' + $(e.target).attr('layer_id')).css('z-index', '1');
   changeColor(e);
 }
 

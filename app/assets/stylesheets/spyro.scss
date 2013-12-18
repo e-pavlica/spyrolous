@@ -49,13 +49,21 @@ nav {
 
 // Styles for the canvas page
 
-#canvas {
+// #canvas {
+
+// }
+
+#snapContainer {
   height: 960px;
   width: 960px;
+  background: image-url("paper.png");
+  box-shadow: 0 0 10px white;
+  z-index: -1;
 }
 
 #snapContainer svg{
   position: absolute;
+  z-index: 0;
 }
 
 .layerThumb {

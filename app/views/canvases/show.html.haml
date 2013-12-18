@@ -24,18 +24,17 @@
     %i{class:"colorBtn fa fa-circle-o fa-2x red", id:"strokeRed"}
     %i{class:"colorBtn fa fa-circle-o fa-2x blue", id:"strokeBlue"}
     %i{class:"colorBtn fa fa-circle-o fa-2x green", id:"strokeGreen"}
+    %hr
+    .layerContainer
+      #newLayerBtn{class:"pure-button"} New Layer
+      -@canvas.layers.each do |l|
+        .layerThumb{layer_id:"#{l.id}"}
+          =l.id
+        %br
 
 
-  #snapContainer.pure-u-3-5
-    /%svg{id:"canvas"}
-
-
-  .pure-u-1-5.side.layerContainer
-    #newLayerBtn{class:"pure-button"} New Layer
-    -@canvas.layers.each do |l|
-      .layerThumb{layer_id:"#{l.id}"}
-        =l.id
-      %br
+  .pure-u-4-5
+    #snapContainer
 
 <script>
 :plain
@@ -50,6 +49,7 @@ $(document).ready(function() {
 -@canvas.layers.each do |l|
   / each layer will get its own snap svg
   l#{l.id} = Snap(960,960);
+  l#{l.id}.node.id = "l#{l.id}";
   / get live data back fro each layer
   subscribeToLayers(#{l.id});
   /draw circles to the canvas
