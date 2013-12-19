@@ -16,7 +16,9 @@ nav {
   margin: 0 0 15px;
 }
 .side {
-  // background: #796D6D;
+  background: rgba(0,0,0,0.7);
+  box-shadow: 0 0 10px black;
+  color: $mustard;
 }
 
 .title {
@@ -26,6 +28,29 @@ nav {
   text-shadow: 2px 2px 2px white;
   font-size: 2.5em;
   color: darken($plum, 15%);
+}
+
+nav a {
+  text-decoration: none;
+}
+
+.options {
+  display: none;
+}
+
+.canvasIndex {
+  color: white;
+}
+
+.canvasThumb {
+  background: image-url("paper.png");
+  box-shadow: 0 0 10px white;
+  margin-bottom: 2em;
+}
+
+.canvasThumb svg {
+  height: 100%;
+  width: 100%;
 }
 
 .pure-button.google {
@@ -45,6 +70,21 @@ nav {
   position: absolute;
   left: 85%;
   top: 0;
+  height: 2.5em;
+  padding: 5px;
+  vertical-align: middle;
+  overflow: hidden;
+  font-size: 0.8em;
+}
+
+.artist a {
+  color: $plum;
+  text-decoration: none;
+  font-variant: small-caps;
+}
+
+.artist a:hover{
+  color: $mustard;
 }
 
 // Styles for the canvas page
@@ -75,7 +115,7 @@ nav {
 }
 
 .pure-button.selected {
-  background-color: desaturate($teal, 15%);
+  background-color: desaturate($teal, 5%);
 }
 
 

@@ -1,7 +1,14 @@
--content_for :head do
-  / Nothing here right now.
-
-=link_to "new canvas", new_canvas_path, {class:"pure-button", id:"newCanvas"}
-%br
-logged in with google id:
-=@artist.google_id
+.pure-g-r
+  .pure-u-1-5
+    =link_to "new canvas", new_canvas_path, {class:"pure-button", id:"newCanvas"}
+  .pure-u-3-5.canvasIndex
+    %h3 My Canvases
+    -@artist.canvases.each do |c|
+      %a{href:"/canvases/#{c.id}"}
+        .canvasThumb{id:"c#{c.id}"}
+          :javascript 
+            var s#{c.id} = Snap("#c#{c.id}");
+            Snap.load("/canvases/svgs/#{c.id}", function(f){
+            s#{c.id}.append(f);
+            });
+  .pure-u-1-5

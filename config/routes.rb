@@ -23,4 +23,10 @@ Spyrolous::Application.routes.draw do
   # for omniauth callbacks
   get 'auth/:provider/callback' => "artists#login"
 
+  #logout the user
+  get '/logout' => 'artists#logout'
+
+  # get pre-processes svgs of canvases
+  get '/canvases/svgs/:id/' => 'canvas_svgs#show'
+
 end

@@ -9,6 +9,9 @@ $(document).on('page:load || page:change', function() {
   // intercept clicks on layer thumbnails to set the active layer
   $('.layerThumb').bind('click', setLayerId);
 
+  // Update layer attributes when the layer update button is clicked.
+  $('#layerUpdateBtn').bind('click', layerUpdate);
+
   // draw a new object on the canvas.
   $('#snapContainer').click(draw);
 
@@ -16,18 +19,24 @@ $(document).on('page:load || page:change', function() {
   $('#circle').click(function() {
     drawType = 'circle';
     selectTypeBtn($(this));
+    $('.options').hide();
+    $('#circleOptions').show();
   });
 
   // set drawType to rectangle
   $('#rectangle').click(function() {
     drawType = 'rectangle';
     selectTypeBtn($(this));
+    $('.options').hide();
+    $('#rectOptions').show();
   });
 
   // setDrawType to spyro
   $('#spyro').click(function() {
     drawType = 'spyro';
     selectTypeBtn($(this));
+    $('.options').hide();
+    $('#spyroOptions').show();
   });
 
   // Set the default layer_id to the first layer.
@@ -45,7 +54,11 @@ $(document).on('page:load || page:change', function() {
 
   // Initialize the color picker.
   $('#fillPicker').spectrum({
-    color: "#000",
+    color: '#000',
+    allowEmpty: true
+  });
+  $('#strokePicker').spectrum({
+    color: '#000',
     allowEmpty: true
   });
 
@@ -55,7 +68,7 @@ $(document).on('page:load || page:change', function() {
 function initialize() {
   deleteCircle();
   deleteRect();
-  colorButtons();
+  // colorButtons();
   deleteSpyro();
 }
 
@@ -178,44 +191,44 @@ function deleteSpyro() {
   });
 }
 
-// Change the color attributes of the snap layer
-function colorButtons() {
-  $('#fillRed').click(function() {
-    postAttr({fill: '#FF0000'});
-  });
+// // Change the color attributes of the snap layer
+// function colorButtons() {
+//   $('#fillRed').click(function() {
+//     postAttr({fill: '#FF0000'});
+//   });
 
-  $('#fillBlue').click(function() {
-    postAttr({fill: '#0000FF'});
-  });
+//   $('#fillBlue').click(function() {
+//     postAttr({fill: '#0000FF'});
+//   });
 
- $('#fillGreen').click(function() {
-    postAttr({fill: '#00FF00'});
- });
+//  $('#fillGreen').click(function() {
+//     postAttr({fill: '#00FF00'});
+//  });
 
-  $('#strokeRed').click(function() {
-    postAttr({stroke: '#FF0000'});
-  });
+//   $('#strokeRed').click(function() {
+//     postAttr({stroke: '#FF0000'});
+//   });
 
-  $('#strokeBlue').click(function() {
-    postAttr({stroke: '#0000FF'});
-  });
+//   $('#strokeBlue').click(function() {
+//     postAttr({stroke: '#0000FF'});
+//   });
 
-  $('#strokeGreen').click(function() {
-    postAttr({stroke: '#00FF00'});
-  });
+//   $('#strokeGreen').click(function() {
+//     postAttr({stroke: '#00FF00'});
+//   });
 
-  function postAttr(attr) {
-    $.ajax({
-      type: 'PATCH',
-      url: '/canvases/' + canvas_id + '/layers/' + layer_id,
-      data: {layer: attr},
-      success: function(success) {
-        // s.attr(attr);
-      }
-    });
+//   function postAttr(attr) {
+//     $.ajax({
+//       type: 'PATCH',
+//       url: '/canvases/' + canvas_id + '/layers/' + layer_id,
+//       data: {layer: attr},
+//       success: function(success) {
+//         // s.attr(attr);
+//       }
+//     });
 
-  }
-}
+//   }
+// }
 
 // Show which typeBtn is currently selected.
 function selectTypeBtn(o) {
@@ -223,3 +236,28 @@ function selectTypeBtn(o) {
     o.addClass('selected');
 }
 
+// Update a layer's attributes
+function layerUpdate() {
+  var fillChoice;
+  function setfill() {
+    if ($('#fillPicker').val() == '')
+      fillChoice = 'none';
+    else
+      fillChoice = $('#fillPicker').val();
+  };
+  setfill();
+  var newAttributes = {
+    fill: fillChoice,
+    stroke: $('#strokePicker').val()
+  };
+  postAttr(newAttributes);
+  function postAttr(attr) {
+    $.ajax({
+      type: 'PATCH',
+      url: '/canvases/' + canvas_id + '/layers/' + layer_id,
+      data: {layer: attr},
+      success: function(success) {
+      }
+    });
+  }
+}

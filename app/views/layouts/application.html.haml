@@ -8,12 +8,14 @@
     =yield :head
     =csrf_meta_tags
   %body
-    %nav.pure-u-1
-      %h1{class:"title"} Spyrolous
+    %nav
+      %a{href:'/dashboard'}
+        %h1{class:"title", alt:"Spyrolous Dashboard"} Spyrolous
       .artist
         -if current_user
-          Welcome, #{current_user.id}
-          /add a logout button here.
+          Welcome, #{current_user.name}
+          %br
+          =link_to "Logout", logout_path
         -else
           =link_to "<i class='fa fa-google-plus fa2'> </i>  Login with Google".html_safe, '/auth/google_oauth2', class:"pure-button google"
     =yield

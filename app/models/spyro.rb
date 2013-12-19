@@ -3,7 +3,7 @@ class Spyro < ActiveRecord::Base
   after_destroy :notify_spyro_delete
 
   def notify_spyro_change
-    connection.execute "NOTIFY #{channel},'{\"spyro\":#{self.to_json}}'"
+    connection.execute "NOTIFY #{channel},'{\"spyro\":#{self.id}}'"
   end
 
   def notify_spyro_delete

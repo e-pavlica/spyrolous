@@ -1,6 +1,6 @@
 class CanvasesController < ApplicationController
 
-  respond_to :json, :html
+  respond_to :json, :html, :svg
   def new
     @canvas = Canvas.create()
     @canvas.layers << Layer.create()
@@ -11,5 +11,6 @@ class CanvasesController < ApplicationController
   def show
     @canvas = Canvas.find(params[:id])
   end
+
 
 end

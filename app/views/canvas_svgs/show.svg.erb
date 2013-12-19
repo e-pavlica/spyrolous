@@ -1,0 +1,22 @@
+<svg version="1.1"
+     baseProfile="full"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events"
+     height="960px" width="960px" viewBox="0 0 960 960">
+<!-- Created with Spyrolous (http://spyrolo.us) -->
+  <% @canvas.layers.each do |l| %>
+    <%="<g stroke=\"#{l.stroke}\" fill=\"#{l.fill}\" opacity=\"#{l.opacity}\">".html_safe%>
+      <% l.circles.each do |c| %>
+        <%="<circle cx=\"#{c.x}\" cy=\"#{c.y}\" r=\"#{c.radius}\"></circle>".html_safe%>
+      <% end %>
+      <% l.rectangles.each do |r| %>
+        <%="<rect x=\"#{r.x}\" y=\"#{r.y}\" width=\"#{r.width}\" height=\"#{r.height}\"></rect>".html_safe%>
+      <% end %>
+      <% l.spyros.each do |s| %>
+        <%="<path d=\"#{s.path}\"></path>".html_safe%>
+      <% end %>
+    </g>
+  <% end %>
+
+</svg>
