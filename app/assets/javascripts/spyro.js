@@ -191,44 +191,6 @@ function deleteSpyro() {
   });
 }
 
-// // Change the color attributes of the snap layer
-// function colorButtons() {
-//   $('#fillRed').click(function() {
-//     postAttr({fill: '#FF0000'});
-//   });
-
-//   $('#fillBlue').click(function() {
-//     postAttr({fill: '#0000FF'});
-//   });
-
-//  $('#fillGreen').click(function() {
-//     postAttr({fill: '#00FF00'});
-//  });
-
-//   $('#strokeRed').click(function() {
-//     postAttr({stroke: '#FF0000'});
-//   });
-
-//   $('#strokeBlue').click(function() {
-//     postAttr({stroke: '#0000FF'});
-//   });
-
-//   $('#strokeGreen').click(function() {
-//     postAttr({stroke: '#00FF00'});
-//   });
-
-//   function postAttr(attr) {
-//     $.ajax({
-//       type: 'PATCH',
-//       url: '/canvases/' + canvas_id + '/layers/' + layer_id,
-//       data: {layer: attr},
-//       success: function(success) {
-//         // s.attr(attr);
-//       }
-//     });
-
-//   }
-// }
 
 // Show which typeBtn is currently selected.
 function selectTypeBtn(o) {
@@ -260,4 +222,25 @@ function layerUpdate() {
       }
     });
   }
+}
+
+function setupSliders() {
+  $('#radiusSlider').slider({min:0, max: 100, slide: function(e, ui){
+    $('#circleRadius').val() = ui.value;
+  }});
+  $('#rectHeightSlider').slider({min:0, max: 100, slide: function(e, ui){
+    $('#rectHeight').val() = ui.value;
+  }});
+  $('#rectWidthSlider').slider({min:0, max: 100, slide: function(e, ui){
+    $('#rectWidth').val() = ui.value;
+  }});
+  $('#spyroRadiusLrgSlider').slider({min:0, max: 100, slide: function(e, ui){
+    $('#spyroRadiusLarge').val() = ui.value;
+  }});
+  $('#spyroRadiusSmlSlider').slider({min:0, max: 100, slide: function(e, ui){
+    $('#spyroRadiusSmall').val() = ui.value;
+  }});
+  $('#spyroRhoSlider').slider({min:0, max: 100, slide: function(e, ui){
+    $('#spyroRho').val() = ui.value;
+  }});
 }

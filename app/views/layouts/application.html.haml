@@ -5,11 +5,12 @@
     %meta{name:"viewport", content:"width=device-width, initial-scale=1.0"}
     =stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     =javascript_include_tag "application", "data-turbolinks-track" => true
+
     =yield :head
     =csrf_meta_tags
   %body
     %nav
-      %a{href:'/dashboard'}
+      %a{href:'/dashboard', class:""}
         %h1{class:"title", alt:"Spyrolous Dashboard"} Spyrolous
       .artist
         -if current_user

@@ -1,8 +1,21 @@
 .pure-g-r
+  .pure-u-1-4
+  .pure-u-1-2.card.home
+    .welcome
+      %h3 Welcome to 
+      .title Spyrolous.
+      %p A place to make digital artwork with friends.
+      %p Sign in above to begin.
+    #spyroHome
 
-  .pure-u-2-3
-    .card
-      %h3 Welcome to Spyrolous.
-      %p Please log in to continue.
-  .pure-u-1-3
-    /=link_to "<i class='fa fa-google-plus fa2'> </i>  Login with Google".html_safe, '/auth/google_oauth2', class:"pure-button google"
+  .pure-u-1-4
+
+:javascript
+  $(document).ready(function(){
+    var s = Snap('#spyroHome');
+    Snap.load("#{asset_path "spyro.svg"}", function(f){
+      s.append(f);
+    })
+
+
+  })

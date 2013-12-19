@@ -6,15 +6,27 @@
     #circleOptions.options
       %label Radius
       %input{type:"number", id:"circleRadius", class:"numInput", value:"50"}
+      %div{id:"radiusSlider"}
+
     #rectOptions.options
       %label height
       %input{type:"number", id:"rectHeight", class:"numInput", value:"50"}
+      %div{id:"rectHeightSlider"}
+
       %label width
       %input{type:"number", id:"rectWidth", class:"numInput", value:"50"}
+      %div{id:"rectWidthSlider"}
+
     #spyroOptions.options
       %input{type:"number", id:"spyroRadiusLarge", class:"numInput", value:"100"}
+      %div{id:"spyroRadiusLrgSlider"}
+
       %input{type:"number", id:"spyroRadiusSmall", class:"numInput", value:"5"}
+      %div{id:"spyroRadiusSmlSlider"}
+
       %input{type:"number", id:"spyroRho", class:"numInput", value:"50"}
+      %div{id:"spyroRhoSlider"}
+
     %hr
     %label fill
     %input{type:'text', id:'fillPicker'} 
