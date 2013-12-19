@@ -4,7 +4,7 @@ var layer_id;
 // define a variable to tell draw function what to do
 var drawType;
 
-$(document).on('page:load || page:change', function() {
+function initialize() {
 
   // intercept clicks on layer thumbnails to set the active layer
   $('.layerThumb').bind('click', setLayerId);
@@ -62,15 +62,12 @@ $(document).on('page:load || page:change', function() {
     allowEmpty: true
   });
 
-});
-
-//make drawn objects clickable
-function initialize() {
   deleteCircle();
   deleteRect();
-  // colorButtons();
   deleteSpyro();
+
 }
+
 
 // set the active layer
 function setLayerId(e) {
