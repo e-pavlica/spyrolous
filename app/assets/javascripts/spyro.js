@@ -114,13 +114,14 @@ function draw(e) {
   if (drawType == 'spyro') {
     // define the data to post for a new spyro path
     console.log('making a new spyro');
-    data = {spyro: {
-      x: x,
-      y: y,
-      largeRadius: $('#spyroRadiusLarge').val(),
-      smallRadius: $('#spyroRadiusSmall').val(),
-      rho: $('#spyroRho').val()}
-    };
+    var generatedPath = generateSpyro(
+      x,
+      y,
+      $('#spyroRadiusLarge').val(),
+      $('#spyroRadiusSmall').val(),
+      $('#spyroRho').val()
+    );
+    data = {spyro: {path: generatedPath}};
     postSpyro(data);
   }
 }
@@ -222,22 +223,22 @@ function layerUpdate() {
 }
 
 function setupSliders() {
-  $('#radiusSlider').slider({min:0, max: 100, slide: function(e, ui){
+  $('#radiusSlider').slider({min: 0, max: 100, slide: function(e, ui) {
     $('#circleRadius').val() = ui.value;
   }});
-  $('#rectHeightSlider').slider({min:0, max: 100, slide: function(e, ui){
+  $('#rectHeightSlider').slider({min: 0, max: 100, slide: function(e, ui) {
     $('#rectHeight').val() = ui.value;
   }});
-  $('#rectWidthSlider').slider({min:0, max: 100, slide: function(e, ui){
+  $('#rectWidthSlider').slider({min: 0, max: 100, slide: function(e, ui) {
     $('#rectWidth').val() = ui.value;
   }});
-  $('#spyroRadiusLrgSlider').slider({min:0, max: 100, slide: function(e, ui){
+  $('#spyroRadiusLrgSlider').slider({min: 0, max: 100, slide: function(e, ui) {
     $('#spyroRadiusLarge').val() = ui.value;
   }});
-  $('#spyroRadiusSmlSlider').slider({min:0, max: 100, slide: function(e, ui){
+  $('#spyroRadiusSmlSlider').slider({min: 0, max: 100, slide: function(e, ui) {
     $('#spyroRadiusSmall').val() = ui.value;
   }});
-  $('#spyroRhoSlider').slider({min:0, max: 100, slide: function(e, ui){
+  $('#spyroRhoSlider').slider({min: 0, max: 100, slide: function(e, ui) {
     $('#spyroRho').val() = ui.value;
   }});
 }
