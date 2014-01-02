@@ -1,23 +1,27 @@
 class Layer < ActiveRecord::Base
+  include SVG::Drawable
+
   has_many :circles
   has_many :paths
   has_many :rectangles
   has_many :spyros
-  after_save :notify_layer_change
+  after_save :notify_change
 
-  def notify_layer_change
-    connection.execute "NOTIFY #{channel}, '{\"layer\":#{self.to_json}}'"
+  def listen
+    self.class.connection.execute "LISTEN #{channel}"
+  ensure 
+    self.class.connection.execute "UNLISTEN #{channel}"
   end
 
   def on_change
-    connection.execute "LISTEN #{channel}"
-    loop do
-      connection.raw_connection.wait_for_notify do |event, pid, data|
-        yield data
-      end
+    self.class.connection.execute "LISTEN #{channel}"
+    self.class.connection.raw_connection.wait_for_notify(15) do |event, pid, data|
+      yield data
+      break
     end
+    '{data:"no new data"}'
   ensure 
-    connection.execute "UNLISTEN #{channel}"
+    self.class.connection.execute "UNLISTEN #{channel}"
   end
 
   private
