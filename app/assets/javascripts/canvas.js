@@ -4,6 +4,12 @@ function subscribeToLayers(id) {
   var source = new EventSource('/canvases/' + canvas_id + '/layers/' + id + '/stream');
   source.addEventListener('update', function(e) {
     newData = JSON.parse(e.data);
+    // console.log(newData);
+
+    if (newData.data){
+      console.log(newData.data);
+    }
+
     if (newData.circle) {
       a = window['l' + id].circle(newData.circle.x, newData.circle.y, newData.circle.radius);
       a.node.id = 'circle' + newData.circle.id;
