@@ -114,7 +114,8 @@ function draw(e) {
   if (drawType == 'spyro') {
     // define the data to post for a new spyro path
     console.log('making a new spyro');
-    var generatedPath = generateSpyro(
+    var generatedPath;
+    generatedPath = generateSpyro(
       x,
       y,
       $('#spyroRadiusLarge').val(),

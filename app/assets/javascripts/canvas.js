@@ -6,7 +6,7 @@ function subscribeToLayers(id) {
     newData = JSON.parse(e.data);
     // console.log(newData);
 
-    if (newData.data){
+    if (newData.data) {
       console.log(newData.data);
     }
 
@@ -17,9 +17,9 @@ function subscribeToLayers(id) {
       $('circle').last().attr('layer_id', id);
       initialize();
     }
-    if (newData.rect) {
-      a = window['l' + id].rect(newData.rect.x, newData.rect.y, newData.rect.width, newData.rect.height);
-      $('rect').last().attr('rect_id', newData.rect.id);
+    if (newData.rectangle) {
+      a = window['l' + id].rect(newData.rectangle.x, newData.rectangle.y, newData.rectangle.width, newData.rectangle.height);
+      $('rect').last().attr('rect_id', newData.rectangle.id);
       $('rect').last().attr('layer_id', id);
       initialize();
     }
