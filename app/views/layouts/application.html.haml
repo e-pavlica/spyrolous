@@ -2,10 +2,10 @@
 %html
   %head
     %title Spyrolous
+    %link{rel:'stylesheet', href:"//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"}
     %meta{name:"viewport", content:"width=device-width, initial-scale=1.0"}
     =stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     =javascript_include_tag "application", "data-turbolinks-track" => true
-
     =yield :head
     =csrf_meta_tags
   %body

@@ -14,9 +14,6 @@ gem "rails-erd"
 #use HAML markup for templates
 gem "haml"
 
-# use font awesome for icons
-gem 'font-awesome-sass'
-
 # use figaro to keep api keys private
 gem 'figaro'
 
