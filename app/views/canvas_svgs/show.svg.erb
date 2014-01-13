@@ -6,15 +6,15 @@
      height="960px" width="960px" viewBox="0 0 960 960">
 <!-- Created with Spyrolous (http://spyrolo.us) -->
   <% @canvas.layers.each do |l| %>
-    <%="<g stroke=\"#{l.stroke}\" fill=\"#{l.fill}\" opacity=\"#{l.opacity}\">".html_safe%>
+    <%#"<g stroke=\"#{l.stroke}\" fill=\"#{l.fill}\" opacity=\"#{l.opacity}\">".html_safe%>
       <% l.circles.each do |c| %>
-        <%="<circle cx=\"#{c.x}\" cy=\"#{c.y}\" r=\"#{c.radius}\"></circle>".html_safe%>
+        <%="<circle cx=\"#{c.x}\" cy=\"#{c.y}\" r=\"#{c.radius}\"> fill=\"#{c.fill}\" stroke=\"#{c.stroke}\" opacity=\"#{c.opacity}\" stroke-width=\"#{c.stroke_width}\"</circle>".html_safe%>
       <% end %>
       <% l.rectangles.each do |r| %>
-        <%="<rect x=\"#{r.x}\" y=\"#{r.y}\" width=\"#{r.width}\" height=\"#{r.height}\"></rect>".html_safe%>
+        <%="<rect x=\"#{r.x}\" y=\"#{r.y}\" width=\"#{r.width}\" height=\"#{r.height}\" fill=\"#{r.fill}\" stroke=\"#{r.stroke}\" opacity=\"#{r.opacity}\" stroke-width=\"#{r.stroke_width}\"></rect>".html_safe%>
       <% end %>
       <% l.spyros.each do |s| %>
-        <%="<path d=\"#{s.path}\"></path>".html_safe%>
+        <%="<path d=\"#{s.path}\" fill=\"#{s.fill}\" stroke=\"#{s.stroke}\" opacity=\"#{s.opacity}\" stroke-width=\"#{s.stroke_width}\"></path>".html_safe%>
       <% end %>
     </g>
   <% end %>

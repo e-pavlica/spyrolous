@@ -4,6 +4,9 @@ var layer_id;
 // define a variable to tell draw function what to do
 var drawType;
 
+// define a var for the Preview instance
+var p;
+
 function initialize() {
 
   // intercept clicks on layer thumbnails to set the active layer
@@ -54,17 +57,24 @@ function initialize() {
 
   // Initialize the color picker.
   $('#fillPicker').spectrum({
-    color: '#000',
-    allowEmpty: true
+    preferredFormat: "hex",
+    allowEmpty: true,
+    clickoutFiresChange: true
   });
   $('#strokePicker').spectrum({
+    preferredFormat: "hex",
     color: '#000',
-    allowEmpty: true
+    allowEmpty: true,
+    clickoutFiresChange: true
   });
 
+  // make all the objects delete-able
   deleteCircle();
   deleteRect();
   deleteSpyro();
+
+  // use sliders to size drawables
+  setupSliders();
 
 }
 
@@ -225,20 +235,30 @@ function layerUpdate() {
 }
 
 function setupSliders() {
-  
+  p = new Preview;
+
+  $('#radiusSlider').slider({min: 0, max: 100, slide: function(e, ui) {
+    $('#circleRadius').val(ui.value);
+    p.circle();
+  }});
   $('#rectHeightSlider').slider({min: 0, max: 100, slide: function(e, ui) {
-    $('#rectHeight').val() = ui.value;
+    $('#rectHeight').val(ui.value);
+    p.rect();
   }});
   $('#rectWidthSlider').slider({min: 0, max: 100, slide: function(e, ui) {
-    $('#rectWidth').val() = ui.value;
+    $('#rectWidth').val(ui.value);
+    p.rect();
   }});
   $('#spyroRadiusLrgSlider').slider({min: 0, max: 100, slide: function(e, ui) {
-    $('#spyroRadiusLarge').val() = ui.value;
+    $('#spyroRadiusLarge').val(ui.value);
+    p.spyro();
   }});
   $('#spyroRadiusSmlSlider').slider({min: 0, max: 100, slide: function(e, ui) {
-    $('#spyroRadiusSmall').val() = ui.value;
+    $('#spyroRadiusSmall').val(ui.value);
+    p.spyro();
   }});
   $('#spyroRhoSlider').slider({min: 0, max: 100, slide: function(e, ui) {
-    $('#spyroRho').val() = ui.value;
+    $('#spyroRho').val(ui.value);
+    p.spyro();
   }});
 }

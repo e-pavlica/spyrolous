@@ -15,11 +15,10 @@ class Layer < ActiveRecord::Base
 
   def on_change
     self.class.connection.execute "LISTEN #{channel}"
-    self.class.connection.raw_connection.wait_for_notify(15) do |event, pid, data|
+    self.class.connection.raw_connection.wait_for_notify do |event, pid, data|
       yield data
       break
     end
-    '{data:"no new data"}'
   ensure 
     self.class.connection.execute "UNLISTEN #{channel}"
   end

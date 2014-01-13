@@ -35,15 +35,11 @@
     %label fill
     %input{type:'text', id:'fillPicker'} 
     %label stroke
-    %input{type:'text', id:'strokePicker'}
+    %input{type:'text', id:'strokePicker', value:'#000'}
     #layerUpdateBtn{class:'pure-button'} Update
     %hr
-    .layerContainer
-      -#newLayerBtn{class:"pure-button"} New Layer
-      -@canvas.layers.each do |l|
-        .layerThumb{layer_id:"#{l.id}"}
-          =l.id
-        %br
+    %svg{id:'preview'}
+
   .pure-u-4-5
     #snapContainer
 
@@ -61,6 +57,7 @@ $(document).ready(function() {
   / each layer will get its own snap svg
   l#{l.id} = Snap(960,960);
   l#{l.id}.node.id = "l#{l.id}";
+  $('#snapContainer').append(l#{l.id}.node);
   l#{l.id}.attr({fill:'none'});
   / get live data back from each layer
   subscribeToLayers(#{l.id});
@@ -84,7 +81,7 @@ $(document).ready(function() {
       $('path').last().attr('spyro_id',"#{sp.id}");
 
 / have to call these after svg objects have been loaded
-$('svg').appendTo('#snapContainer');
+
 initialize();
 });
 </script>
