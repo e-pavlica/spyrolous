@@ -25,7 +25,7 @@ class RectanglesController < ApplicationController
   private
 
   def rectangle_params
-    params.require(:rectangle).permit(:x, :y, :width, :height)
+    params.require(:rectangle).permit(:x, :y, :width, :height, :fill, :stroke, :opacity, :stroke_width)
   end
 
 end

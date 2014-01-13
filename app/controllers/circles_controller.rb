@@ -26,7 +26,7 @@ class CirclesController < ApplicationController
   private
 
   def circle_params
-    params.require(:circle).permit(:x,:y,:radius)
+    params.require(:circle).permit(:x,:y,:radius, :fill, :stroke, :opacity, :stroke_width)
   end
 
 end

@@ -42,10 +42,6 @@ function initialize() {
     $('#spyroOptions').show();
   });
 
-  // Set the default layer_id to the first layer.
-  layer_id = $('.layerThumb').first().attr('layer_id');
-  $('.layerThumb').first().css('background', 'rgba(190,60,60,0.7');
-
   //Add a new layer to the canvas
   $('#newLayerBtn').click(function() {
     $.post('/canvases/' + canvas_id + '/layers/',
@@ -103,10 +99,18 @@ function draw(e) {
   var x = e.pageX - posX;
   var y = e.pageY - posY;
   var data;
+  var f = $('#fillPicker').val();
+  var s = $('#strokePicker').val();
 
   if (drawType == 'circle') {
     // define the data to post to the circles model
-    data = {circle: {x: x, y: y, radius: $('#circleRadius').val()}};
+    data = {circle: {
+      x: x,
+      y: y,
+      radius: $('#circleRadius').val(),
+      fill: f,
+      stroke: s
+    }};
     postCircle(data);
   }
 
@@ -116,7 +120,10 @@ function draw(e) {
       x: x,
       y: y,
       width: $('#rectWidth').val(),
-      height: $('#rectHeight').val()}
+      height: $('#rectHeight').val(),
+      fill: f,
+      stroke: s
+    }
     };
     postRect(data);
   }
@@ -132,7 +139,11 @@ function draw(e) {
       $('#spyroRadiusSmall').val(),
       $('#spyroRho').val()
     );
-    data = {spyro: {path: generatedPath}};
+    data = {spyro: {
+      path: generatedPath,
+      fill: f,
+      stroke: s
+    }};
     postSpyro(data);
   }
 }

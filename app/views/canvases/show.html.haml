@@ -1,7 +1,3 @@
-=content_for :head do
-  %script{src:'//code.jquery.com/ui/1.10.3/jquery-ui.js'}
-  %link{rel:'stylesheet', href:'//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css'}
-
 .pure-g-r
   .pure-u-1-5.side
     #circle{class:"pure-button typeBtn"} circle
@@ -38,6 +34,7 @@
     %input{type:'text', id:'strokePicker', value:'#000'}
     #layerUpdateBtn{class:'pure-button'} Update
     %hr
+    %h4 Preview:
     %svg{id:'preview'}
 
   .pure-u-4-5
@@ -81,7 +78,7 @@ $(document).ready(function() {
       $('path').last().attr('spyro_id',"#{sp.id}");
 
 / have to call these after svg objects have been loaded
-
+layer_id = #{@canvas.layers.first.id};
 initialize();
 });
 </script>
