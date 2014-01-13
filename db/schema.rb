@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140112191700) do
+ActiveRecord::Schema.define(version: 20140113043512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,15 +80,13 @@ ActiveRecord::Schema.define(version: 20140112191700) do
 
   create_table "spyros", force: true do |t|
     t.text     "path"
-    t.string   "fill"
-    t.string   "stroke"
+    t.string   "fill",         default: "none"
+    t.string   "stroke",       default: "black"
     t.integer  "layer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "opacity",      default: "1"
     t.string   "stroke_width", default: "1"
   end
-
-  add_index "spyros", ["layer_id"], name: "index_spyros_on_layer_id", using: :btree
 
 end

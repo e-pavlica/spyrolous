@@ -43,7 +43,7 @@ function subscribeToLayers(id) {
         null,
         function(data) {
           a = window['l' + id].path(data.path);
-          a.attr(attributes(o));
+          a.attr(attributes(data));
           $('path').last().attr('spyro_id', data.id);
           $('path').last().attr('layer_id', id);
           deleteSpyro(a);

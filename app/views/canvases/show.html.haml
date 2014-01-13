@@ -1,3 +1,7 @@
+=content_for :head do
+  %script{src:'//code.jquery.com/ui/1.10.3/jquery-ui.js'}
+  %link{rel:'stylesheet', href:'//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css'}
+
 .pure-g-r
   .pure-u-1-5.side
     #circle{class:"pure-button typeBtn"} circle
@@ -35,7 +39,7 @@
     #layerUpdateBtn{class:'pure-button'} Update
     %hr
     .layerContainer
-      #newLayerBtn{class:"pure-button"} New Layer
+      -#newLayerBtn{class:"pure-button"} New Layer
       -@canvas.layers.each do |l|
         .layerThumb{layer_id:"#{l.id}"}
           =l.id
@@ -57,24 +61,25 @@ $(document).ready(function() {
   / each layer will get its own snap svg
   l#{l.id} = Snap(960,960);
   l#{l.id}.node.id = "l#{l.id}";
-  / get live data back fro each layer
+  l#{l.id}.attr({fill:'none'});
+  / get live data back from each layer
   subscribeToLayers(#{l.id});
   /draw circles to the canvas
   -l.circles.each do |c|
     :plain
-      l#{l.id}.circle(#{c.x},#{c.y},#{c.radius});
+      l#{l.id}.circle(#{c.x},#{c.y},#{c.radius}).attr(#{c.svg_attributes});
       $('circle').last().attr('circle_id',"#{c.id}");
       $('circle').last().attr('layer_id',"#{l.id}");
   /draw rectangles to the canvas
   -l.rectangles.each do |r|
     :plain
-      l#{l.id}.rect(#{r.x},#{r.y},#{r.width},#{r.height});
+      l#{l.id}.rect(#{r.x},#{r.y},#{r.width},#{r.height}).attr(#{r.svg_attributes});
       $('rect').last().attr('layer_id',"#{l.id}");
       $('rect').last().attr('rect_id',"#{r.id}");
   / draw spyros to the canvas
   -l.spyros.each do |sp|
     :plain
-      l#{l.id}.path("#{sp.path}");
+      l#{l.id}.path("#{sp.path}").attr(#{sp.svg_attributes});
       $('path').last().attr('layer_id',"#{l.id}");
       $('path').last().attr('spyro_id',"#{sp.id}");
 

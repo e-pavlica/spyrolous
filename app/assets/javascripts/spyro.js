@@ -10,7 +10,7 @@ function initialize() {
   $('.layerThumb').bind('click', setLayerId);
 
   // Update layer attributes when the layer update button is clicked.
-  $('#layerUpdateBtn').bind('click', layerUpdate);
+  // $('#layerUpdateBtn').bind('click', layerUpdate);
 
   // draw a new object on the canvas.
   $('#snapContainer').click(draw);
@@ -225,9 +225,7 @@ function layerUpdate() {
 }
 
 function setupSliders() {
-  $('#radiusSlider').slider({min: 0, max: 100, slide: function(e, ui) {
-    $('#circleRadius').val() = ui.value;
-  }});
+  
   $('#rectHeightSlider').slider({min: 0, max: 100, slide: function(e, ui) {
     $('#rectHeight').val() = ui.value;
   }});

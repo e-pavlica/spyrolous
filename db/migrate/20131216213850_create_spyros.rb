@@ -4,7 +4,7 @@ class CreateSpyros < ActiveRecord::Migration
       t.text :path
       t.string :fill
       t.string :stroke
-      t.references :layer, index: true
+      t.references :layer
 
       t.timestamps
     end

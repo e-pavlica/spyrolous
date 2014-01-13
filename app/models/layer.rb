@@ -1,11 +1,11 @@
 class Layer < ActiveRecord::Base
-  include SVG::Drawable
+  #include SVG::Drawable
 
   has_many :circles
   has_many :paths
   has_many :rectangles
   has_many :spyros
-  after_save :notify_change
+  #after_save :notify_change
 
   def listen
     self.class.connection.execute "LISTEN #{channel}"
