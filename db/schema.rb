@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131219013059) do
+ActiveRecord::Schema.define(version: 20140112191700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,12 +41,13 @@ ActiveRecord::Schema.define(version: 20131219013059) do
     t.integer  "layer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "fill",         default: "none"
+    t.string   "stroke",       default: "black"
+    t.string   "opacity",      default: "1"
+    t.string   "stroke_width", default: "1"
   end
 
   create_table "layers", force: true do |t|
-    t.string   "fill",       default: "none"
-    t.string   "stroke",     default: "black"
-    t.string   "opacity",    default: "1"
     t.integer  "canvas_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -57,6 +58,10 @@ ActiveRecord::Schema.define(version: 20131219013059) do
     t.integer  "layer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "fill",         default: "none"
+    t.string   "stroke",       default: "black"
+    t.string   "opacity",      default: "1"
+    t.string   "stroke_width", default: "1"
   end
 
   create_table "rectangles", force: true do |t|
@@ -67,6 +72,10 @@ ActiveRecord::Schema.define(version: 20131219013059) do
     t.integer  "layer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "fill",         default: "none"
+    t.string   "stroke",       default: "black"
+    t.string   "opacity",      default: "1"
+    t.string   "stroke_width", default: "1"
   end
 
   create_table "spyros", force: true do |t|
@@ -76,6 +85,8 @@ ActiveRecord::Schema.define(version: 20131219013059) do
     t.integer  "layer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "opacity",      default: "1"
+    t.string   "stroke_width", default: "1"
   end
 
   add_index "spyros", ["layer_id"], name: "index_spyros_on_layer_id", using: :btree

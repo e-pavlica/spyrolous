@@ -1,48 +1,63 @@
+// Define a variable for SVG object attributes
+var attributes = function(obj) {
+  return {
+    fill: obj.fill,
+    stroke: obj.stroke,
+    opacity: obj.opacity,
+    strokeWidth: obj.stroke_width
+  };
+};
+
 
 function subscribeToLayers(id) {
-  var a;
+  var a, o;
   var source = new EventSource('/canvases/' + canvas_id + '/layers/' + id + '/stream');
   source.addEventListener('update', function(e) {
-    newData = JSON.parse(e.data);
-    // console.log(newData);
+    var n = JSON.parse(e.data);
+    // console.log(n);
 
-    if (newData.data) {
-      console.log(newData.data);
+    if (n.data) {
+      console.log(n.data);
     }
 
-    if (newData.circle) {
-      a = window['l' + id].circle(newData.circle.x, newData.circle.y, newData.circle.radius);
-      a.node.id = 'circle' + newData.circle.id;
-      $('circle').last().attr('circle_id', newData.circle.id);
+    if (n.circle) {
+      o = n.circle;
+      a = window['l' + id].circle(o.x, o.y, o.radius);
+      a.node.id = 'circle' + o.id;
+      a.attr(attributes(o));
+      $('circle').last().attr('circle_id', o.id);
       $('circle').last().attr('layer_id', id);
-      initialize();
+      deleteCircle(a);
     }
-    if (newData.rectangle) {
-      a = window['l' + id].rect(newData.rectangle.x, newData.rectangle.y, newData.rectangle.width, newData.rectangle.height);
-      $('rect').last().attr('rect_id', newData.rectangle.id);
+    if (n.rectangle) {
+      o = n.rectangle;
+      a = window['l' + id].rect(o.x, o.y, o.width, o.height);
+      a.attr(attributes(o));
+      $('rect').last().attr('rect_id', o.id);
       $('rect').last().attr('layer_id', id);
-      initialize();
+      deleteRect(a);
     }
-    if (newData.spyro) {
+    if (n.spyro) {
       $.get(
-        '/canvases/' + canvas_id + '/layers/' + id + '/spyros/' + newData.spyro,
+        '/canvases/' + canvas_id + '/layers/' + id + '/spyros/' + n.spyro,
         null,
         function(data) {
-          window['l' + id].path(data.path);
+          a = window['l' + id].path(data.path);
+          a.attr(attributes(o));
           $('path').last().attr('spyro_id', data.id);
           $('path').last().attr('layer_id', id);
+          deleteSpyro(a);
         });
-      initialize();
     }
-    if (newData.layer) {
+    if (n.layer) {
       window['l' + id].attr({
-        fill: newData.layer.fill,
-        stroke: newData.layer.stroke,
-        opacity: newData.layer.opacity
+        fill: n.layer.fill,
+        stroke: n.layer.stroke,
+        opacity: n.layer.opacity
       });
     }
-    if (newData.destroy) {
-      var d = newData.destroy;
+    if (n.destroy) {
+      var d = n.destroy;
       if (d.circle) {
         $('circle[circle_id =' + d.circle + ']').remove();
       }

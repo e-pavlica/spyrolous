@@ -37,7 +37,7 @@ class LayersController < ApplicationController
     # Define the active canvas
     @layer = Layer.find(params[:id])
     response.stream.write "event: update\n"
-    response.stream.write "data:{\"data\":\"hello, world!\"} \n\n"
+    response.stream.write "data:{\"data\":\"loaded layer #{params[:id]}\"} \n\n"
     begin
       loop do
         # the on_change recieves a notification whenever something is added to the layer's channel

@@ -160,29 +160,30 @@ function postSpyro(data) {
 }
 
 // delete a circle when it's clicked on
-function deleteCircle() {
-  $('circle').click(function() {
+function deleteCircle(a) {
+  a = typeof a !== 'undefined' ? a : $('circle');
+  a.click(function() {
     $.ajax({
       type: 'DELETE',
       url: '/canvases/' + canvas_id + '/layers/' + $(this).attr('layer_id') + '/circles/' + $(this).attr('circle_id')
     });
-    // $(this).remove();
   });
 }
 
 // delete a rectangle when it's clicked on
-function deleteRect() {
-  $('rect').click(function() {
+function deleteRect(a) {
+  a = typeof a !== 'undefined' ? a : $('rect');
+  a.click(function() {
     $.ajax({
       type: 'DELETE',
       url: '/canvases/' + canvas_id + '/layers/' + $(this).attr('layer_id') + '/rectangles/' + $(this).attr('rect_id')
     });
-    // $(this).remove();
   });
 }
 
-function deleteSpyro() {
-  $('path[spyro_id]').click(function() {
+function deleteSpyro(a) {
+  a = typeof a !== 'undefined' ? a : $('path[spyro_id]');
+  a.click(function() {
     $.ajax({
       type: 'DELETE',
       url: '/canvases/' + canvas_id + '/layers/' + $(this).attr('layer_id') + '/spyros/' + $(this).attr('spyro_id')

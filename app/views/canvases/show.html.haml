@@ -77,13 +77,7 @@ $(document).ready(function() {
       l#{l.id}.path("#{sp.path}");
       $('path').last().attr('layer_id',"#{l.id}");
       $('path').last().attr('spyro_id',"#{sp.id}");
-  / load color attrs
-  :plain
-    l#{l.id}.attr({
-      fill: "#{l.fill}",
-      stroke: "#{l.stroke}",
-      opacity: "#{l.opacity}"
-    })
+
 / have to call these after svg objects have been loaded
 $('svg').appendTo('#snapContainer');
 initialize();
