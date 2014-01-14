@@ -94,13 +94,21 @@ function changeColor(e) {
 
 function draw(e) {
   // define the position of the element based on click event
-  var posX = $(e.target).offset().left;
-  var posY = $(e.target).offset().top;
-  var x = e.pageX - posX;
-  var y = e.pageY - posY;
+  var xA = e.pageX - $(e.target).offset().left;
+  var yA = e.pageY - $(e.target).offset().top;
+  var x = xA * 960 / $(e.target).width();
+  var y = yA * 960 / $(e.target).height();
   var data;
   var f = $('#fillPicker').val();
   var s = $('#strokePicker').val();
+
+  if (f == '') {
+    f = 'none';
+  }
+
+  if (s == '') {
+    s = 'none';
+  }
 
   if (drawType == 'circle') {
     // define the data to post to the circles model
@@ -248,28 +256,69 @@ function layerUpdate() {
 function setupSliders() {
   p = new Preview;
 
-  $('#radiusSlider').slider({min: 0, max: 100, slide: function(e, ui) {
-    $('#circleRadius').val(ui.value);
-    p.circle();
-  }});
-  $('#rectHeightSlider').slider({min: 0, max: 100, slide: function(e, ui) {
-    $('#rectHeight').val(ui.value);
-    p.rect();
-  }});
-  $('#rectWidthSlider').slider({min: 0, max: 100, slide: function(e, ui) {
-    $('#rectWidth').val(ui.value);
-    p.rect();
-  }});
-  $('#spyroRadiusLrgSlider').slider({min: 0, max: 100, slide: function(e, ui) {
-    $('#spyroRadiusLarge').val(ui.value);
-    p.spyro();
-  }});
-  $('#spyroRadiusSmlSlider').slider({min: 0, max: 100, slide: function(e, ui) {
-    $('#spyroRadiusSmall').val(ui.value);
-    p.spyro();
-  }});
-  $('#spyroRhoSlider').slider({min: 0, max: 100, slide: function(e, ui) {
-    $('#spyroRho').val(ui.value);
-    p.spyro();
-  }});
+  $('#radiusSlider').slider({
+    min: 0,
+    max: 100,
+    start: function(e, ui) {$('#previewContainer').fadeIn();},
+    slide: function(e, ui) {
+      $('#circleRadius').val(ui.value);
+      p.circle();
+      },
+    stop: function(e, ui) {$('#previewContainer').fadeOut(4000);}
+  });
+
+  $('#rectHeightSlider').slider({
+    min: 0,
+    max: 100,
+    start: function(e, ui) {$('#previewContainer').fadeIn();},
+    slide: function(e, ui) {
+      $('#rectHeight').val(ui.value);
+      p.rect();
+      },
+    stop: function(e, ui) {$('#previewContainer').fadeOut(4000);}
+  });
+
+  $('#rectWidthSlider').slider({
+    min: 0,
+    max: 100,
+    start: function(e, ui) {$('#previewContainer').fadeIn();},
+    slide: function(e, ui) {
+      $('#rectWidth').val(ui.value);
+      p.rect();
+      },
+    stop: function(e, ui) {$('#previewContainer').fadeOut(4000);}
+  });
+
+  $('#spyroRadiusLrgSlider').slider({
+    min: 0,
+    max: 100,
+    start: function(e, ui) {$('#previewContainer').fadeIn();},
+    slide: function(e, ui) {
+      $('#spyroRadiusLarge').val(ui.value);
+      p.spyro();
+      },
+    stop: function(e, ui) {$('#previewContainer').fadeOut(4000);}
+  });
+
+  $('#spyroRadiusSmlSlider').slider({
+    min: 0,
+    max: 100,
+    start: function(e, ui) {$('#previewContainer').fadeIn();},
+    slide: function(e, ui) {
+      $('#spyroRadiusSmall').val(ui.value);
+      p.spyro();
+      },
+    stop: function(e, ui) {$('#previewContainer').fadeOut(4000);}
+  });
+
+  $('#spyroRhoSlider').slider({
+    min: 0,
+    max: 100,
+    start: function(e, ui) {$('#previewContainer').fadeIn();},
+    slide: function(e, ui) {
+      $('#spyroRho').val(ui.value);
+      p.spyro();
+      },
+    stop: function(e, ui) {$('#previewContainer').fadeOut(4000);}
+  });
 }

@@ -92,19 +92,32 @@ nav a {
 
 // Styles for the canvas page
 
-// #canvas {
-
-// }
+#previewContainer {
+  background: rgba(0,0,0,0.8);
+  position: absolute;
+  height: 90vh;
+  width: 90vh;
+  display: none;
+}
 
 #snapContainer {
-  height: 960px;
-  width: 960px;
+  height: 90vh;
+  width: 90vh;
   background: image-url("paper.png");
   box-shadow: 0 0 10px white;
   z-index: -1;
 }
 
+@media screen and (max-width: 767px) {
+  #snapContainer {
+    height: 100vw;
+    width: 100vw;
+  }
+}
+
 #snapContainer svg{
+  height: inherit;
+  width: inherit;
   position: absolute;
   z-index: 0;
 }

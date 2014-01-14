@@ -16,7 +16,7 @@ class SpyrosController < ApplicationController
   def destroy
     @spyro = Spyro.find(params[:id].to_i)
     if @spyro.destroy
-      respond_with :ok
+      respond_with @spyro, status: 200
     else
       respond_with @spyro.errors
     end

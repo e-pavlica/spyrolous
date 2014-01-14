@@ -35,10 +35,12 @@
     #layerUpdateBtn{class:'pure-button'} Update
     %hr
     %h4 Preview:
-    %svg{id:'preview'}
+    
 
   .pure-u-4-5
     #snapContainer
+      #previewContainer
+        %svg{id:'preview'}
 
 <script>
 :plain
@@ -55,7 +57,8 @@ $(document).ready(function() {
   l#{l.id} = Snap(960,960);
   l#{l.id}.node.id = "l#{l.id}";
   $('#snapContainer').append(l#{l.id}.node);
-  l#{l.id}.attr({fill:'none'});
+  / hackish way to get layer to be displayed responsively
+  l#{l.id}.node.setAttribute('viewBox', '0 0 960 960');
   / get live data back from each layer
   subscribeToLayers(#{l.id});
   /draw circles to the canvas

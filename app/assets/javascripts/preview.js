@@ -6,15 +6,27 @@ function Preview() {
 // set up the preview pane.
 Preview.prototype.create = function() {
   s = Snap('#preview');
+  s.node.setAttribute('viewBox', '0 0 960 960');
   x = $('#preview').width() / 2;
   y = $('#preview').height() / 2;
 };
 
 // get the valuse from the color selectors
 Preview.prototype.svgAttrs = function() {
+  var f = $('#fillPicker').val();
+  var s = $('#strokePicker').val();
+
+  if (f == '') {
+    f = 'none';
+  }
+
+  if (s == '') {
+    s = 'none';
+  }
+
   return {
-  fill: $('#fillPicker').val(),
-  stroke: $('#strokePicker').val(),
+  fill: f,
+  stroke: s,
   opacity: 1,                       // need to add selector here when opacity is built
   strokeWidth: 1                    // need to add selector here when stroke width is built
   }
