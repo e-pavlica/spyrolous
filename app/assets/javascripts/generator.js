@@ -32,7 +32,7 @@ function generateSpyro(xOffset, yOffset, bigRadius, smallRadius, rho) {
     // add x,y coords to the path
     else {
       path += 'L' + Math.round(x * 10000) / 10000 + ' ' + Math.round(y * 10000) / 10000;
-      points += 1;
+      // points += 1;
     }
     t += 0.002;
   }

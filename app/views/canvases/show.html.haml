@@ -1,40 +1,59 @@
 .pure-g-r
   .pure-u-1-5.side
+    %h4 Hi there! What would you like to draw?
     #circle{class:"pure-button typeBtn"} circle
     #rectangle{class:"pure-button typeBtn"} rectangle
     #spyro{class:"pure-button typeBtn"} spyro
     #circleOptions.options
+      %h5 Use the slider to adjust your circle:
       %label Radius
       %input{type:"number", id:"circleRadius", class:"numInput", value:"50"}
       %div{id:"radiusSlider"}
 
     #rectOptions.options
-      %label height
+      %h5 Use the sliders to adjust your rectangle:
+      %label Height
       %input{type:"number", id:"rectHeight", class:"numInput", value:"50"}
       %div{id:"rectHeightSlider"}
 
-      %label width
+      %label Width
       %input{type:"number", id:"rectWidth", class:"numInput", value:"50"}
       %div{id:"rectWidthSlider"}
 
     #spyroOptions.options
+      %h5 Use the sliders to adjust your spyro:
+      %label Outer Circle Radius
       %input{type:"number", id:"spyroRadiusLarge", class:"numInput", value:"100"}
       %div{id:"spyroRadiusLrgSlider"}
-
+      %label Inner Circle Radius
       %input{type:"number", id:"spyroRadiusSmall", class:"numInput", value:"5"}
       %div{id:"spyroRadiusSmlSlider"}
-
+      %label Point on Inner Circle
       %input{type:"number", id:"spyroRho", class:"numInput", value:"50"}
       %div{id:"spyroRhoSlider"}
 
-    %hr
-    %label fill
-    %input{type:'text', id:'fillPicker'} 
-    %label stroke
-    %input{type:'text', id:'strokePicker', value:'#000'}
-    #layerUpdateBtn{class:'pure-button'} Update
-    %hr
-    %h4 Preview:
+      %hr
+    #colorOptions.options.pure-g-r
+      .pure-u-1
+        %h5 Add color to your shape:
+      .pure-u-1-2
+        %label Fill
+        %input{type:'text', id:'fillPicker'} 
+      .pure-u-1-2
+        %label Stroke
+        %input{type:'text', id:'strokePicker', value:'#000'}
+      .pure-u-1
+        %h5 Click on the canvas to place your shape!
+      / #layerUpdateBtn{class:'pure-button'} Update
+      %hr
+    %h4 Share this drawing:
+    %a{href:'#', title:'links coming soon!', class:'pure-button'}
+      %i{class:'fa fa-link'}
+    %a{href:'#', title:'pngs coming soon!', class:'pure-button'}
+      %i{class:'fa fa-picture-o'}
+    %a{href:'#', title:'social coming soon!', class:'pure-button'}
+      %i{class:'fa fa-google-plus'}
+
     
 
   .pure-u-4-5

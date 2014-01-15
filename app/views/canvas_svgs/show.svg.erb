@@ -8,7 +8,7 @@
   <% @canvas.layers.each do |l| %>
     <%#"<g stroke=\"#{l.stroke}\" fill=\"#{l.fill}\" opacity=\"#{l.opacity}\">".html_safe%>
       <% l.circles.each do |c| %>
-        <%="<circle cx=\"#{c.x}\" cy=\"#{c.y}\" r=\"#{c.radius}\"> fill=\"#{c.fill}\" stroke=\"#{c.stroke}\" opacity=\"#{c.opacity}\" stroke-width=\"#{c.stroke_width}\"</circle>".html_safe%>
+        <%="<circle cx=\"#{c.x}\" cy=\"#{c.y}\" r=\"#{c.radius}\" fill=\"#{c.fill}\" stroke=\"#{c.stroke}\" opacity=\"#{c.opacity}\" stroke-width=\"#{c.stroke_width}\"></circle>".html_safe %>
       <% end %>
       <% l.rectangles.each do |r| %>
         <%="<rect x=\"#{r.x}\" y=\"#{r.y}\" width=\"#{r.width}\" height=\"#{r.height}\" fill=\"#{r.fill}\" stroke=\"#{r.stroke}\" opacity=\"#{r.opacity}\" stroke-width=\"#{r.stroke_width}\"></rect>".html_safe%>

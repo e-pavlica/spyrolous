@@ -24,6 +24,7 @@ function initialize() {
     selectTypeBtn($(this));
     $('.options').hide();
     $('#circleOptions').show();
+    $('#colorOptions').show();
   });
 
   // set drawType to rectangle
@@ -31,6 +32,7 @@ function initialize() {
     drawType = 'rectangle';
     selectTypeBtn($(this));
     $('.options').hide();
+    $('#colorOptions').show();
     $('#rectOptions').show();
   });
 
@@ -39,6 +41,7 @@ function initialize() {
     drawType = 'spyro';
     selectTypeBtn($(this));
     $('.options').hide();
+    $('#colorOptions').show();
     $('#spyroOptions').show();
   });
 
@@ -258,7 +261,7 @@ function setupSliders() {
 
   $('#radiusSlider').slider({
     min: 0,
-    max: 100,
+    max: 480,
     start: function(e, ui) {$('#previewContainer').fadeIn();},
     slide: function(e, ui) {
       $('#circleRadius').val(ui.value);
@@ -269,7 +272,7 @@ function setupSliders() {
 
   $('#rectHeightSlider').slider({
     min: 0,
-    max: 100,
+    max: 960,
     start: function(e, ui) {$('#previewContainer').fadeIn();},
     slide: function(e, ui) {
       $('#rectHeight').val(ui.value);
@@ -280,7 +283,7 @@ function setupSliders() {
 
   $('#rectWidthSlider').slider({
     min: 0,
-    max: 100,
+    max: 960,
     start: function(e, ui) {$('#previewContainer').fadeIn();},
     slide: function(e, ui) {
       $('#rectWidth').val(ui.value);
@@ -291,34 +294,34 @@ function setupSliders() {
 
   $('#spyroRadiusLrgSlider').slider({
     min: 0,
-    max: 100,
+    max: 960,
     start: function(e, ui) {$('#previewContainer').fadeIn();},
     slide: function(e, ui) {
       $('#spyroRadiusLarge').val(ui.value);
       p.spyro();
       },
-    stop: function(e, ui) {$('#previewContainer').fadeOut(4000);}
+    stop: function(e, ui) {$('#previewContainer').fadeOut();}
   });
 
   $('#spyroRadiusSmlSlider').slider({
     min: 0,
-    max: 100,
+    max: 480,
     start: function(e, ui) {$('#previewContainer').fadeIn();},
     slide: function(e, ui) {
       $('#spyroRadiusSmall').val(ui.value);
       p.spyro();
       },
-    stop: function(e, ui) {$('#previewContainer').fadeOut(4000);}
+    stop: function(e, ui) {$('#previewContainer').fadeOut();}
   });
 
   $('#spyroRhoSlider').slider({
     min: 0,
-    max: 100,
+    max: 480,
     start: function(e, ui) {$('#previewContainer').fadeIn();},
     slide: function(e, ui) {
       $('#spyroRho').val(ui.value);
       p.spyro();
       },
-    stop: function(e, ui) {$('#previewContainer').fadeOut(4000);}
+    stop: function(e, ui) {$('#previewContainer').fadeOut();}
   });
 }

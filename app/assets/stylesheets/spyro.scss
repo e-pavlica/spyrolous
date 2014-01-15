@@ -98,6 +98,7 @@ nav a {
   height: 90vh;
   width: 90vh;
   display: none;
+  z-index: 2;
 }
 
 #snapContainer {
@@ -167,6 +168,7 @@ nav a {
   box-shadow: none;
   border: 0;
   border-radius: 3px;
+  display: none;
 }
 
 .colorBtn.red {
