@@ -5,7 +5,7 @@
     %h3 My Canvases
     -@artist.canvases.each do |c|
       %a{href:"/canvases/#{c.id}"}
-        .canvasThumb{id:"c#{c.id}"}
+        %svg{id:"c#{c.id}", class:'canvasThumb'}
           :javascript 
             var s#{c.id} = Snap("#c#{c.id}");
             Snap.load("/canvases/svgs/#{c.id}", function(f){
