@@ -1,3 +1,5 @@
+require 'server_side'
+
 class LayersController < ApplicationController
   include ActionController::Live
 
