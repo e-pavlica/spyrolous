@@ -42,7 +42,7 @@ class LayersController < ApplicationController
 
     # define the sse object.
     sse = ServerSide::SSE.new(response.stream, retry: 300, event: 'update')
-
+    sse.write(data:'Welcome to spyrolous')
     begin
       @layer.on_change do |data|
         sse.write({event:'update', data: JSON.parse(data)})
