@@ -183,7 +183,7 @@ nav a {
 
 
 /* Media query for retina images */
-@media only screen and (min-resolution: 240dpi) {
+@media only screen and (min-resolution: 240dppx) {
     body {
       background: image-url("dark_wood_@2X.png");
     }

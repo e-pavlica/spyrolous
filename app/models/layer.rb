@@ -15,9 +15,9 @@ class Layer < ActiveRecord::Base
 
   def on_change
     self.class.connection.execute "LISTEN #{channel}"
-    self.class.connection.raw_connection.wait_for_notify do |event, pid, data|
+    # added a 30 sec timeout b/c heroku doesn't like to hold connections open longer than that.
+    self.class.connection.raw_connection.wait_for_notify 30 do |event, pid, data|
       yield data
-      break
     end
   ensure 
     self.class.connection.execute "UNLISTEN #{channel}"

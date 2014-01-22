@@ -2,17 +2,18 @@
 
 function generateSpyro(xOffset, yOffset, bigRadius, smallRadius, rho) {
   // setup variables
-  var r1, r2, path, t, x1, x2, firstRun;
+  var r1, r2, path, t, i, x1, x2, firstRun;
   path = '';
   r1 = bigRadius;
   r2 = smallRadius;
   t = 0.0;
+  i = 0;
   firstRun = true;
 
   //for testing
   // var points = 1;
 
-  while (t < 13 * Math.PI) {
+  while (i < 20000) {
     // generate the x, y coords
     var x = ((r1 - r2) * Math.cos(t) + rho * Math.cos((r1 - r2) * t / r2)) + xOffset;
     var y = ((r1 - r2) * Math.sin(t) - rho * Math.sin((r1 - r2) * t / r2)) + yOffset;
@@ -35,6 +36,7 @@ function generateSpyro(xOffset, yOffset, bigRadius, smallRadius, rho) {
       // points += 1;
     }
     t += 0.002;
+    i += 1;
   }
   // console.log(points);
   return path;

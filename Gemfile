@@ -55,6 +55,8 @@ gem 'puma'
 
 #setup sum testing shtuff (using rspec instead of test::unit)
 group :development, :test do
+  gem 'jazz_hands'
+  gem 'pry-remote'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara'

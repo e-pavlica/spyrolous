@@ -5,10 +5,10 @@
     %h3 My Canvases
     -@artist.canvases.each do |c|
       %a{href:"/canvases/#{c.id}"}
-        .canvasThumb  {id:"c#{c.id}"}
+        .canvasThumb{id:"c#{c.id}"}
           :javascript
             var s#{c.id} = Snap("#c#{c.id}");
             Snap.load("/canvases/svgs/#{c.id}", function(f){
             s#{c.id}.append(f);
             });
-  .pure-u-1-5
+  .pure-u-1-5     

@@ -1,4 +1,4 @@
-require 'server_side'
+# require 'server_side'
 
 class LayersController < ApplicationController
   include ActionController::Live
@@ -36,29 +36,30 @@ class LayersController < ApplicationController
   def stream
     # Set the response header to keep client open
     response.headers['Content-Type'] = 'text/event-stream'
+
     # Define the active canvas
     @layer = Layer.find(params[:id])
-    response.stream.write "event: update\n"
-    response.stream.write "data:{\"data\":\"loaded layer #{params[:id]}\"} \n\n"
-    begin
-      loop do
-        # the on_change recieves a notification whenever something is added to the layer's channel
-        @layer.on_change do |data|
-          # response.stream.write "id: 0\n"
-          response.stream.write "event: update\n"
-          # two new lines marks the end of the data for this event.
-          response.stream.write "data:#{data} \n\n"
-        end # canvas.layers.each
 
-        # only send back new data every 2 seconds
-        sleep 2
-      end # loop
+    # define the sse object.
+    sse = SSE.new(response.stream, retry: 300, event: 'update')
+
+    begin
+      @layer.on_change do |data|
+        sse.write({event:'update', data: JSON.parse(data)})
+        # In this setup, the stream will be closed after each write
+        # (partially defeating the purpose of the SSE). However,
+        # this ensures that threads do not get stuck in an infinite
+        # loop since we currently are not getting an IOError on client
+        # disconnect. The JS on the client-side will automatically 
+        # re-connect when the stream breaks, so functionality SHOULD be ok.
+      end
       rescue IOError
-        # client disconnected.
-        # .. update database streamers to remove disconnected client
+        # Bug in Rails 4 is not throwing this error properly.
+        # TODO: find alternative to IOError or invetigate fixing Rails source
+        logger.info 'client disconnected.'
       ensure
         # clean up the stream by closing it.
-        response.stream.close
+        sse.close
     end
   end
 

@@ -13,7 +13,8 @@ function subscribeToLayers(id) {
   var a, o;
   var source = new EventSource('/canvases/' + canvas_id + '/layers/' + id + '/stream');
   source.addEventListener('update', function(e) {
-    var n = JSON.parse(e.data);
+    var z = JSON.parse(e.data);
+    var n = z.data;
     // console.log(n);
 
     if (n.data) {
@@ -58,11 +59,12 @@ function subscribeToLayers(id) {
     }
     if (n.destroy) {
       var d = n.destroy;
+      console.log(d);
       if (d.circle) {
         $('circle[circle_id =' + d.circle + ']').remove();
       }
-      if (d.rect) {
-        $('rect[rect_id =' + d.rect + ']').remove();
+      if (d.rectangle) {
+        $('rect[rect_id =' + d.rectangle + ']').remove();
       }
       if (d.spyro) {
         $('path[spyro_id =' + d.spyro + ']').remove();
