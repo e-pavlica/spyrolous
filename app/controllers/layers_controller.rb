@@ -1,4 +1,4 @@
-# require 'server_side'
+require 'server_side'
 
 class LayersController < ApplicationController
   include ActionController::Live
@@ -41,7 +41,7 @@ class LayersController < ApplicationController
     @layer = Layer.find(params[:id])
 
     # define the sse object.
-    sse = SSE.new(response.stream, retry: 300, event: 'update')
+    sse = ServerSide::SSE.new(response.stream, retry: 300, event: 'update')
 
     begin
       @layer.on_change do |data|

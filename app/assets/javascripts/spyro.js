@@ -267,7 +267,7 @@ function setupSliders() {
       $('#circleRadius').val(ui.value);
       p.circle();
       },
-    stop: function(e, ui) {$('#previewContainer').fadeOut(4000);}
+    stop: function(e, ui) {$('#previewContainer').fadeOut();}
   });
 
   $('#rectHeightSlider').slider({
@@ -278,7 +278,7 @@ function setupSliders() {
       $('#rectHeight').val(ui.value);
       p.rect();
       },
-    stop: function(e, ui) {$('#previewContainer').fadeOut(4000);}
+    stop: function(e, ui) {$('#previewContainer').fadeOut();}
   });
 
   $('#rectWidthSlider').slider({
@@ -289,7 +289,7 @@ function setupSliders() {
       $('#rectWidth').val(ui.value);
       p.rect();
       },
-    stop: function(e, ui) {$('#previewContainer').fadeOut(4000);}
+    stop: function(e, ui) {$('#previewContainer').fadeOut();}
   });
 
   $('#spyroRadiusLrgSlider').slider({
