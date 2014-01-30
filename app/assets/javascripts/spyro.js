@@ -141,17 +141,22 @@ function draw(e) {
 
   if (drawType == 'spyro') {
     // define the data to post for a new spyro path
-    console.log('making a new spyro');
-    var generatedPath;
-    generatedPath = generateSpyro(
-      x,
-      y,
-      $('#spyroRadiusLarge').val(),
-      $('#spyroRadiusSmall').val(),
-      $('#spyroRho').val()
-    );
+    // console.log('making a new spyro');
+    // var generatedPath;
+    // generatedPath = generateSpyro(
+    //   x,
+    //   y,
+    //   $('#spyroRadiusLarge').val(),
+    //   $('#spyroRadiusSmall').val(),
+    //   $('#spyroRho').val()
+
     data = {spyro: {
-      path: generatedPath,
+      x: x,
+      y: y,
+      big_radius: $('#spyroRadiusLarge').val(),
+      small_radius: $('#spyroRadiusSmall').val(),
+      rho: $('#spyroRho').val(),
+      // path: generatedPath,
       fill: f,
       stroke: s
     }};

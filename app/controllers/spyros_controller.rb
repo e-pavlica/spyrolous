@@ -32,7 +32,18 @@ class SpyrosController < ApplicationController
   private
 
   def spyro_params
-    params.require(:spyro).permit(:path, :fill, :stroke, :opacity, :stroke_width)
+    params.require(:spyro).permit(
+      :x,
+      :y,
+      :big_radius,
+      :small_radius,
+      :rho,
+      :path,
+      :fill,
+      :stroke,
+      :opacity,
+      :stroke_width
+      )
   end
 
 end

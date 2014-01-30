@@ -39,16 +39,23 @@ function subscribeToLayers(id) {
       deleteRect(a);
     }
     if (n.spyro) {
-      $.get(
-        '/canvases/' + canvas_id + '/layers/' + id + '/spyros/' + n.spyro,
-        null,
-        function(data) {
-          a = window['l' + id].path(data.path);
-          a.attr(attributes(data));
-          $('path').last().attr('spyro_id', data.id);
-          $('path').last().attr('layer_id', id);
-          deleteSpyro(a);
-        });
+      // $.get(
+      //   '/canvases/' + canvas_id + '/layers/' + id + '/spyros/' + n.spyro,
+      //   null,
+      //   function(data) {
+      //     a = window['l' + id].path(data.path);
+      //     a.attr(attributes(data));
+      //     $('path').last().attr('spyro_id', data.id);
+      //     $('path').last().attr('layer_id', id);
+      //     deleteSpyro(a);
+      //   });
+      o = n.spyro;
+      var generatedPath = generateSpyro(o.x, o.y, o.big_radius, o.small_radius, o.rho);
+      a = window['l' + id].path(generatedPath);
+      a.attr(attributes(o));
+      $('path').last().attr('spyro_id', o.id);
+      $('path').last().attr('layer_id', id);
+      deleteSpyro(a);
     }
     if (n.layer) {
       window['l' + id].attr({
