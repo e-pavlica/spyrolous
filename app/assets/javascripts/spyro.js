@@ -56,12 +56,12 @@ function initialize() {
 
   // Initialize the color picker.
   $('#fillPicker').spectrum({
-    preferredFormat: "hex",
+    preferredFormat: 'hex',
     allowEmpty: true,
     clickoutFiresChange: true
   });
   $('#strokePicker').spectrum({
-    preferredFormat: "hex",
+    preferredFormat: 'hex',
     color: '#000',
     allowEmpty: true,
     clickoutFiresChange: true

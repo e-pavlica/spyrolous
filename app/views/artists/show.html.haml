@@ -8,7 +8,7 @@
         .canvasThumb{id:"c#{c.id}"}
           :javascript
             var s#{c.id} = Snap("#c#{c.id}");
-            Snap.load("/canvases/svgs/#{c.id}", function(f){
+            Snap.load("/canvases/svgs/#{c.id}.svg", function(f){
             s#{c.id}.append(f);
             });
   .pure-u-1-5     
